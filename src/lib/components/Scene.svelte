@@ -1,8 +1,19 @@
 <script>
-import { set_group, set_root } from '$lib/utils/context';
-
-	import { onMount, setContext, onDestroy } from 'svelte';
+	import { set_group, set_root } from '../utils/context.js';
+	import { onMount, onDestroy } from 'svelte';
 	import * as THREE from 'three';
+
+	/** @type {any} */
+	export let background = null;
+
+	/** @type {THREE.Texture} */
+	export let environment = null;
+
+	/** @type {THREE.FogBase} */
+	export let fog = null;
+
+	/** @type {THREE.Material} */
+	export let overrideMaterial = null;
 
 	/** @type {HTMLElement} */
 	let container;
@@ -81,13 +92,6 @@ import { set_group, set_root } from '$lib/utils/context';
 
 		context.scene = new THREE.Scene();
 
-		const pointlight = new THREE.PointLight(0xffffff, 1, 100, 2);
-		pointlight.position.set(8, 5, 3);
-		context.scene.add(pointlight);
-
-		const ambientlight = new THREE.AmbientLight(0xffffff, 0.5);
-		context.scene.add(ambientlight);
-
 		resize();
 	});
 
@@ -100,14 +104,22 @@ import { set_group, set_root } from '$lib/utils/context';
 
 		invalidate();
 	};
+
+	$: if (context.scene) {
+		context.scene.background = background;
+		context.scene.environment = environment;
+		context.scene.fog = fog;
+		context.scene.overrideMaterial = overrideMaterial;
+	}
 </script>
 
 <svelte:window on:resize={resize}/>
 
 <div class="container" bind:this={container}>
 	<canvas bind:this={context.canvas}/>
+
 	{#if context.scene}
-		<slot camera={context.camera} canvas={context.canvas}></slot>
+		<slot></slot>
 	{/if}
 </div>
 

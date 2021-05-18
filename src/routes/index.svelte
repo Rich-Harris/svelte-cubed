@@ -1,6 +1,6 @@
 <script>
 	import * as THREE from 'three';
-	import { Scene, Mesh, PerspectiveCamera, OrbitControls } from '$lib/index.js';
+	import { Scene, Mesh, PerspectiveCamera, OrbitControls, AmbientLight, PointLight } from '$lib/index.js';
 	import { onMount } from 'svelte';
 
 	let x = 0;
@@ -24,17 +24,22 @@
 
 <h1>svelte-three</h1>
 
-<Scene let:camera let:canvas>
+<Scene background={new THREE.Color(0xffffff)} fog={new THREE.FogExp2(0xffffff, 0.01)}>
 	<Mesh
-		geometry={new THREE.BoxGeometry()}
-		material={new THREE.MeshStandardMaterial({ color: 0xff0000, wireframe: false })}
+		geometry={new THREE.TorusKnotGeometry(1, 0.4, 128, 32)}
+		material={new THREE.MeshStandardMaterial({ color: 0xaaaaaa, wireframe: false })}
 		position={[x, y, z]}
 		rotation={[x, y, z]}
 		scale={1}
 	/>
 
+	<!-- camera/controls -->
 	<PerspectiveCamera zoom={1} position={[0, 0, 10]} />
 	<OrbitControls autoRotate enableDamping zoomSpeed={1}/>
+
+	<!-- lights -->
+	<AmbientLight color="green" intensity={0.3}/>
+	<PointLight color="red" intensity={1} position={[8, 5, 3]}/>
 </Scene>
 
 <style>
@@ -44,7 +49,6 @@
 
 	h1 {
 		position: relative;
-		color: white;
 		z-index: 2;
 	}
 </style>

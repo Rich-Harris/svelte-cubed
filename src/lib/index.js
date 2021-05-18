@@ -6,3 +6,7 @@ export { default as PerspectiveCamera } from './components/cameras/PerspectiveCa
 
 // controls
 export { default as OrbitControls } from './components/controls/OrbitControls.svelte';
+
+// lights
+export { default as AmbientLight } from './components/lights/AmbientLight.svelte';
+export { default as PointLight } from './components/lights/PointLight.svelte';
