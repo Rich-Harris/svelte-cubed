@@ -26,3 +26,7 @@ type GroupContext = {
 	add: (object: THREE.Object3D) => void;
 	remove: (object: THREE.Object3D) => void;
 };
+
+type ObjectContext = {
+	current: import('svelte/store').Writable<THREE.Object3D>;
+};

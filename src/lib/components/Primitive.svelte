@@ -33,6 +33,8 @@
 		}
 
 		previous_object = object;
+
+		root.invalidate();
 	}
 
 	$: {

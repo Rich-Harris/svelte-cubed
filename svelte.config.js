@@ -4,6 +4,12 @@ const config = {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
 
+		package: {
+			exports: {
+				// include: ['**/*.svelte']
+			}
+		},
+
 		vite: {
 			ssr: {
 				external: ['three/examples/jsm/controls/OrbitControls.js']

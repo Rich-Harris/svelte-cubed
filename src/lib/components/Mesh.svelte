@@ -1,5 +1,5 @@
 <script>
-	import { get_group, get_root } from '$lib/utils/context';
+	import { get_group, get_root } from '../utils/context.js';
 	import * as THREE from 'three';
 
 	/** @type {THREE.BufferGeometry} */
@@ -7,6 +7,9 @@
 
 	/** @type {THREE.Material} */
 	export let material;
+
+	export let castShadow = false;
+	export let receiveShadow = false;
 
 	/** @type {[number, number, number]} */
 	export let position = [0, 0, 0];
@@ -31,6 +34,8 @@
 	}
 
 	$: {
+		mesh.castShadow = castShadow;
+		mesh.receiveShadow = receiveShadow;
 		mesh.position.set(position[0], position[1], position[2]);
 		mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
 

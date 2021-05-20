@@ -1,9 +1,12 @@
 <script>
 	import { get_root } from '../../utils/context.js';
-	import { PerspectiveCamera, Vector3 } from 'three';
+	import { OrthographicCamera, Vector3 } from 'three';
 
-	export let fov = 45;
-	export let near = 1;
+	export let left = -1;
+	export let right = 1;
+	export let top = 1;
+	export let bottom = -1;
+	export let near = 0.1;
 	export let far = 2000;
 	export let zoom = 1;
 
@@ -12,16 +15,18 @@
 
 	const root = get_root();
 
-	const camera = new PerspectiveCamera(fov, root.canvas.clientWidth / root.canvas.clientHeight, near, far);
+	const camera = new OrthographicCamera(left, right, top, bottom, near, far);
 	const target_vector = new Vector3();
 
 	root.camera.set(camera, (w, h) => {
-		camera.aspect = w / h;
-		camera.updateProjectionMatrix();
+		// TODO would it be easier to accept width/height/cx/cy and calculate values from there?
 	});
 
 	$: {
-		camera.fov = fov;
+		camera.left = left;
+		camera.right = right;
+		camera.top = top;
+		camera.bottom = bottom;
 		camera.near = near;
 		camera.far = far;
 		camera.zoom = zoom;

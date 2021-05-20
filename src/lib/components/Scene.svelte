@@ -3,6 +3,8 @@
 	import { onMount, onDestroy } from 'svelte';
 	import * as THREE from 'three';
 
+	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */
+
 	/** @type {any} */
 	export let background = null;
 
@@ -14,6 +16,48 @@
 
 	/** @type {THREE.Material} */
 	export let overrideMaterial = null;
+
+	/** Renderer options https://threejs.org/docs/?q=render#api/en/renderers/WebGLRenderer */
+
+	/** @type {'lowp' | 'mediump' | 'highp'} */
+	export let precision = 'highp';
+
+	/** @type {'default' | 'high-performance' | 'low-power'} */
+	export let powerPreference = 'default';
+
+	export let alpha = false;
+	export let premultipliedAlpha = true;
+	export let antialias = false;
+	export let stencil = true;
+	export let preserveDrawingBuffer = false;
+	export let failIfMajorPerformanceCaveat = false;
+	export let depth = true;
+	export let logarithmicDepthBuffer = false;
+
+	export let autoClear = true;
+	export let autoClearColor = true;
+	export let autoClearDepth = true;
+	export let autoClearStencil = true;
+	export let checkShaderErrors = true;
+	export let gammaFactor = 2;
+	export let localClippingEnabled = false;
+	export let physicallyCorrectLights = false;
+
+	/** @type {number} */
+	export let outputEncoding = undefined;
+
+	/** @type {THREE.Plane[]} */
+	export let clippingPlanes = [];
+
+	/** @type {boolean | typeof THREE.BasicShadowMap | typeof THREE.PCFShadowMap | typeof THREE.PCFSoftShadowMap | typeof THREE.VSMShadowMap} */
+	export let shadows = undefined;
+
+	/** @type {typeof THREE.NoToneMapping | typeof THREE.LinearToneMapping | typeof THREE.ReinhardToneMapping | typeof THREE.CineonToneMapping | typeof THREE.ACESFilmicToneMapping} */
+	export let toneMapping = THREE.NoToneMapping;
+	export let toneMappingExposure = 1;
+
+	/** additional props */
+	export let pixelRatio = typeof devicePixelRatio !== 'undefined' ? devicePixelRatio : 1;
 
 	/** @type {HTMLElement} */
 	let container;
@@ -87,12 +131,26 @@
 
 	onMount(() => {
 		context.renderer = new THREE.WebGLRenderer({
-			canvas: context.canvas
+			canvas: context.canvas,
+			precision,
+			powerPreference,
+			alpha,
+			premultipliedAlpha,
+			antialias,
+			stencil,
+			preserveDrawingBuffer,
+			failIfMajorPerformanceCaveat,
+			depth,
+			logarithmicDepthBuffer
 		});
 
 		context.scene = new THREE.Scene();
 
 		resize();
+
+		return () => {
+			context.renderer.dispose();
+		};
 	});
 
 	const resize = () => {
@@ -110,6 +168,35 @@
 		context.scene.environment = environment;
 		context.scene.fog = fog;
 		context.scene.overrideMaterial = overrideMaterial;
+	}
+
+	$: if (context.renderer) {
+		context.renderer.autoClear = autoClear;
+		context.renderer.autoClearColor = autoClearColor;
+		context.renderer.autoClearDepth = autoClearDepth;
+		context.renderer.autoClearStencil = autoClearStencil;
+		context.renderer.debug.checkShaderErrors = checkShaderErrors;
+		context.renderer.gammaFactor = gammaFactor;
+		context.renderer.localClippingEnabled = localClippingEnabled;
+		context.renderer.physicallyCorrectLights = physicallyCorrectLights;
+		if (outputEncoding != null) context.renderer.outputEncoding = outputEncoding;
+		context.renderer.clippingPlanes = clippingPlanes;
+		context.renderer.toneMapping = toneMapping;
+		context.renderer.toneMappingExposure = toneMappingExposure;
+
+		if (shadows) {
+			context.renderer.shadowMap.enabled = true;
+			context.renderer.shadowMap.autoUpdate = true; // TODO allow some way to control this?
+			context.renderer.shadowMap.type = shadows === true ? THREE.PCFShadowMap : shadows;
+		} else {
+			context.renderer.shadowMap.enabled = false;
+		}
+
+		invalidate();
+	}
+
+	$: if (context.renderer) {
+		context.renderer.setPixelRatio(pixelRatio);
 	}
 </script>
 

@@ -5,11 +5,16 @@
 	/** @type {string | number | THREE.Color} */
 	export let color = 0xffffff;
 	export let intensity = 1;
-	export let distance = 100;
+	export let distance = 0;
+	export let angle = Math.PI / 3;
+	export let penumbra = 0;
 	export let decay = 1;
 
 	/** @type {[number, number, number]} */
 	export let position = [0, 0, 0];
+
+	/** @type {[number, number, number]} */
+	export let target = [0, 0, 0];
 
 	/**
 	 * @type {boolean | {
@@ -21,8 +26,10 @@
 	 */
 	export let shadow = null;
 
-	const light = new THREE.PointLight(color, intensity, distance, decay);
+	const light = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
 	get_group().add(light);
+
+	const target_vector = new THREE.Vector3();
 
 	const { invalidate } = get_root();
 
@@ -33,6 +40,9 @@
 		light.decay = decay;
 
 		light.position.set(position[0], position[1], position[2]);
+
+		target_vector.set(target[0], target[1], target[2]);
+		light.lookAt(target_vector);
 
 		invalidate();
 	}
