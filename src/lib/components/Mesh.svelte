@@ -1,6 +1,7 @@
 <script>
-	import { get_group, get_root } from '../utils/context.js';
 	import * as THREE from 'three';
+	import { writable } from 'svelte/store';
+	import { get_group, get_root, set_object } from '../utils/context.js';
 
 	/** @type {THREE.BufferGeometry} */
 	export let geometry;
@@ -23,6 +24,12 @@
 	const root = get_root();
 	const group = get_group();
 
+	const context = {
+		current: writable(undefined)
+	};
+
+	set_object(context);
+
 	/** @type {THREE.Mesh} */
 	let mesh;
 
@@ -31,6 +38,8 @@
 
 		mesh = new THREE.Mesh(geometry, material);
 		group.add(mesh);
+
+		context.current.set(mesh);
 	}
 
 	$: {
@@ -48,3 +57,7 @@
 		root.invalidate();
 	}
 </script>
+
+{#if mesh}
+	<slot></slot>
+{/if}

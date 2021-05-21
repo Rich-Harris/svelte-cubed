@@ -1,6 +1,7 @@
 <script>
-	import { get_group, get_root } from '../utils/context.js';
+	import { writable } from 'svelte/store';
 	import * as THREE from 'three';
+	import { get_group, get_root, set_object } from '../utils/context.js';
 
 	/** @type {THREE.Object3D} */
 	export let object;
@@ -20,6 +21,12 @@
 
 	group.add(container);
 
+	const context = {
+		current: writable(undefined)
+	};
+
+	set_object(context);
+
 	/** @type {THREE.Object3D} */
 	let previous_object;
 
@@ -33,6 +40,7 @@
 		}
 
 		previous_object = object;
+		context.current.set(object);
 
 		root.invalidate();
 	}
@@ -50,3 +58,7 @@
 		root.invalidate();
 	}
 </script>
+
+{#if object}
+	<slot></slot>
+{/if}

@@ -17,3 +17,6 @@ export { default as SpotLight } from './components/lights/SpotLight.svelte';
 
 // animation
 export { default as Animation } from './components/animation/Animation.svelte';
+
+// utils
+export { onFrame } from './utils/lifecycle.js';

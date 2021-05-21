@@ -28,9 +28,10 @@
 	}
 
 	$: {
-		action.time = time;
-		action.timeScale = timeScale;
 		action.weight = weight;
+
+		mixer.timeScale = timeScale;
+		mixer.setTime(time);
 
 		invalidate();
 	}

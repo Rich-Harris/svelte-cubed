@@ -8,12 +8,6 @@ const config = {
 			exports: {
 				// include: ['**/*.svelte']
 			}
-		},
-
-		vite: {
-			ssr: {
-				external: ['three/examples/jsm/controls/OrbitControls.js']
-			}
 		}
 	}
 };
