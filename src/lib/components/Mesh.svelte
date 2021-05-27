@@ -33,6 +33,9 @@
 	/** @type {THREE.Mesh} */
 	let mesh;
 
+	/** @type {THREE.BufferGeometry} */
+	let previous_geometry = null;
+
 	$: {
 		if (mesh) group.remove(mesh);
 
@@ -40,6 +43,9 @@
 		group.add(mesh);
 
 		context.current.set(mesh);
+
+		if (previous_geometry && previous_geometry !== geometry) previous_geometry.dispose();
+		previous_geometry = geometry;
 	}
 
 	$: {
