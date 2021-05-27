@@ -1,13 +1,16 @@
 {
 	"name": "svelte-three",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"package": "svelte-kit package",
+		"prepublishOnly": "echo \"Did you mean to run 'svelte-kit package' and publish the generated directory?\" && exit 1",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"format": "prettier --write --plugin-search-dir=. .",
+		"postversion": "git push && git push --tags",
+		"release": "npm run package && npm publish package"
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
