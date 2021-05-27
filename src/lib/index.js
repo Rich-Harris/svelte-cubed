@@ -1,4 +1,5 @@
 export { default as Scene } from './components/Scene.svelte';
+export { default as Group } from './components/Group.svelte';
 export { default as Mesh } from './components/Mesh.svelte';
 export { default as Primitive } from './components/Primitive.svelte';
 
