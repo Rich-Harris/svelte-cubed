@@ -7,13 +7,13 @@
 	/** @type {THREE.Object3D} */
 	export let object;
 
-	/** @type {[number, number, number]} */
+	/** @type {import('../types').Position} */
 	export let position = [0, 0, 0];
 
-	/** @type {[number, number, number, import('../types').EulerOrder?]} */
+	/** @type {import('../types').Rotation} */
 	export let rotation = [0, 0, 0];
 
-	/** @type {number | [number, number, number]} */
+	/** @type {import('../types').Scale} */
 	export let scale = 1;
 
 	const { invalidate } = get_root();

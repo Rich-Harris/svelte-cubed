@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-type RootContext = {
+export type RootContext = {
 	canvas: HTMLCanvasElement;
 	scene: THREE.Scene;
 	renderer: THREE.WebGLRenderer;
@@ -22,13 +22,11 @@ type RootContext = {
 	invalidate: () => void;
 };
 
-type GroupContext = {
+export type GroupContext = {
 	add: (object: THREE.Object3D) => void;
 	remove: (object: THREE.Object3D) => void;
 };
 
-type ObjectContext = {
+export type ObjectContext = {
 	current: import('svelte/store').Writable<THREE.Object3D>;
 };
-
-type EulerOrder = 'XYZ' | 'XZY' | 'YXZ' | 'YZX' | 'ZXY' | 'ZYX';

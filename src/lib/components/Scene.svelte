@@ -74,7 +74,7 @@
 		});
 	}
 
-	/** @type {import('../types').RootContext} */
+	/** @type {import('../types/context').RootContext} */
 	const context = {
 		canvas: null,
 		scene: null,

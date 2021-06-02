@@ -1,9 +1,8 @@
 /**
- *
  * @param {import('three').Object3D} object
- * @param {[number, number, number]} position
- * @param {[number, number, number, import('../types').EulerOrder?]} rotation
- * @param {number | [number, number, number]} scale
+ * @param {import('../types').Position} position
+ * @param {import('../types').Rotation} rotation
+ * @param {import('../types').Scale} scale
  */
 export function transform(object, position, rotation, scale) {
 	object.position.set(position[0], position[1], position[2]);

@@ -8,7 +8,7 @@
 	export let distance = 100;
 	export let decay = 1;
 
-	/** @type {[number, number, number]} */
+	/** @type {import('../types').Position} */
 	export let position = [0, 0, 0];
 
 	/**

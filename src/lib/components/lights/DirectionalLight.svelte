@@ -6,10 +6,10 @@
 	export let color = 0xffffff;
 	export let intensity = 1;
 
-	/** @type {[number, number, number]} */
+	/** @type {import('../types').Position} */
 	export let position = [0, 1, 0];
 
-	/** @type {[number, number, number]} */
+	/** @type {import('../types').Position} */
 	export let target = [0, 0, 0];
 
 	/**
