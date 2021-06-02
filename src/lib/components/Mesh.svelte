@@ -2,6 +2,7 @@
 	import * as THREE from 'three';
 	import { writable } from 'svelte/store';
 	import { get_group, get_root, set_object } from '../utils/context.js';
+	import { transform } from '../utils/object.js';
 
 	/** @type {THREE.BufferGeometry} */
 	export let geometry;
@@ -15,13 +16,13 @@
 	/** @type {[number, number, number]} */
 	export let position = [0, 0, 0];
 
-	/** @type {[number, number, number]} */
+	/** @type {[number, number, number, import('../types').EulerOrder?]} */
 	export let rotation = [0, 0, 0];
 
 	/** @type {number | [number, number, number]} */
 	export let scale = [1, 1, 1];
 
-	const root = get_root();
+	const { invalidate } = get_root();
 	const group = get_group();
 
 	const context = {
@@ -31,39 +32,31 @@
 	set_object(context);
 
 	/** @type {THREE.Mesh} */
-	let mesh;
+	let object;
 
 	/** @type {THREE.BufferGeometry} */
 	let previous_geometry = null;
 
 	$: {
-		if (mesh) group.remove(mesh);
+		if (object) group.remove(object);
 
-		mesh = new THREE.Mesh(geometry, material);
-		group.add(mesh);
+		object = new THREE.Mesh(geometry, material);
+		group.add(object);
 
-		context.current.set(mesh);
+		context.current.set(object);
 
 		if (previous_geometry && previous_geometry !== geometry) previous_geometry.dispose();
 		previous_geometry = geometry;
 	}
 
 	$: {
-		mesh.castShadow = castShadow;
-		mesh.receiveShadow = receiveShadow;
-		mesh.position.set(position[0], position[1], position[2]);
-		mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
-
-		if (typeof scale === 'number') {
-			mesh.scale.set(scale, scale, scale);
-		} else {
-			mesh.scale.set(scale[0], scale[1], scale[2]);
-		}
-
-		root.invalidate();
+		object.castShadow = castShadow;
+		object.receiveShadow = receiveShadow;
+		transform(object, position, rotation, scale);
+		invalidate();
 	}
 </script>
 
-{#if mesh}
+{#if object}
 	<slot></slot>
 {/if}

@@ -2,6 +2,7 @@
 	import { writable } from 'svelte/store';
 	import * as THREE from 'three';
 	import { get_group, get_root, set_object } from '../utils/context.js';
+	import { transform } from '../utils/object.js';
 
 	/** @type {THREE.Object3D} */
 	export let object;
@@ -9,13 +10,13 @@
 	/** @type {[number, number, number]} */
 	export let position = [0, 0, 0];
 
-	/** @type {[number, number, number]} */
+	/** @type {[number, number, number, import('../types').EulerOrder?]} */
 	export let rotation = [0, 0, 0];
 
 	/** @type {number | [number, number, number]} */
 	export let scale = 1;
 
-	const root = get_root();
+	const { invalidate } = get_root();
 	const group = get_group();
 	const container = new THREE.Object3D();
 
@@ -42,20 +43,12 @@
 		previous_object = object;
 		context.current.set(object);
 
-		root.invalidate();
+		invalidate();
 	}
 
 	$: {
-		container.position.set(position[0], position[1], position[2]);
-		container.rotation.set(rotation[0], rotation[1], rotation[2]);
-
-		if (typeof scale === 'number') {
-			container.scale.set(scale, scale, scale);
-		} else {
-			container.scale.set(scale[0], scale[1], scale[2]);
-		}
-
-		root.invalidate();
+		transform(container, position, rotation, scale);
+		invalidate();
 	}
 </script>
 

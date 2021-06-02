@@ -2,47 +2,40 @@
 	import * as THREE from 'three';
 	import { onDestroy } from 'svelte';
 	import { get_group, get_root, set_group } from '../utils/context.js';
+	import { transform } from '../utils/object.js';
 
 	/** @type {[number, number, number]} */
 	export let position = [0, 0, 0];
 
-	/** @type {[number, number, number]} */
+	/** @type {[number, number, number, import('../types').EulerOrder?]} */
 	export let rotation = [0, 0, 0];
 
 	/** @type {number | [number, number, number]} */
 	export let scale = [1, 1, 1];
 
 	const { invalidate } = get_root();
-	const group = new THREE.Group();
+	const object = new THREE.Group();
 
-	get_group().add(group);
+	get_group().add(object);
 
 	set_group({
-		add(object) {
-			group.add(object);
+		add(child) {
+			object.add(child);
 			invalidate();
 
 			onDestroy(() => {
-				group.remove(object);
+				object.remove(child);
 				invalidate();
 			});
 		},
-		remove(object) {
-			group.remove(object);
+		remove(child) {
+			object.remove(child);
 			invalidate();
 		}
 	});
 
 	$: {
-		group.position.set(position[0], position[1], position[2]);
-		group.rotation.set(rotation[0], rotation[1], rotation[2]);
-
-		if (typeof scale === 'number') {
-			group.scale.set(scale, scale, scale);
-		} else {
-			group.scale.set(scale[0], scale[1], scale[2]);
-		}
-
+		transform(object, position, rotation, scale);
 		invalidate();
 	}
 </script>

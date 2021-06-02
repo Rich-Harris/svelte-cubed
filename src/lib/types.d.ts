@@ -30,3 +30,5 @@ type GroupContext = {
 type ObjectContext = {
 	current: import('svelte/store').Writable<THREE.Object3D>;
 };
+
+type EulerOrder = 'XYZ' | 'XZY' | 'YXZ' | 'YZX' | 'ZXY' | 'ZYX';
