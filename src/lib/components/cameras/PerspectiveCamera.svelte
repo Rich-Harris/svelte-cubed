@@ -31,5 +31,6 @@
 		camera.lookAt(target_vector);
 
 		camera.updateProjectionMatrix();
+		root.invalidate();
 	}
 </script>
