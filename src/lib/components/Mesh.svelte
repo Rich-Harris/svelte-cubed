@@ -8,7 +8,7 @@
 	export let geometry;
 
 	/** @type {THREE.Material} */
-	export let material;
+	export let material = undefined;
 
 	export let castShadow = false;
 	export let receiveShadow = false;

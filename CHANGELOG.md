@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.6
+
+- Expose orbit controls target
+
 ## 0.0.5
 
 - Invalidate scene when camera changes

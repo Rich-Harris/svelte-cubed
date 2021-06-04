@@ -26,9 +26,11 @@
 	export let panSpeed = 1;
 	export let rotateSpeed = 1;
 	export let screenSpacePanning = true;
-	export let target = new THREE.Vector3(0, 0, 0);
 	export let touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
 	export let zoomSpeed = 1;
+
+	/** @type {import('../../types').Position} */
+	export let target;
 
 	const root = get_root();
 	const dispatch = createEventDispatcher();
@@ -49,8 +51,15 @@
 
 		controls.addEventListener('change', e => {
 			dispatch('change', e);
+
+			if (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2]) {
+				target = [controls.target.x, controls.target.y, controls.target.z];
+			}
+
 			root.invalidate();
 		});
+
+		// TODO do we need to remove these listeners?
 
 		return controls;
 	});
@@ -68,6 +77,12 @@
 			cancelAnimationFrame(frame);
 		};
 	});
+
+	$: if (target && (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2])) {
+		controls.target.set(target[0], target[1], target[2]);
+
+		controls.update();
+	}
 
 	$: if (controls) {
 		controls.autoRotate = autoRotate;
@@ -92,7 +107,6 @@
 		controls.panSpeed = panSpeed;
 		controls.rotateSpeed = rotateSpeed;
 		controls.screenSpacePanning = screenSpacePanning;
-		controls.target = target;
 		controls.touches = touches;
 		controls.zoomSpeed = zoomSpeed;
 
