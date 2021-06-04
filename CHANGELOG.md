@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.5
+
+- Invalidate scene when camera changes
+
 ## 0.0.4
 
 - Export Position/Rotation/Scale types
