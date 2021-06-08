@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.7
+
+- Allow width/height to be explicit
+
 ## 0.0.6
 
 - Expose orbit controls target

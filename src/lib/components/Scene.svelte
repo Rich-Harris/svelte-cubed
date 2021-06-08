@@ -57,7 +57,19 @@
 	export let toneMappingExposure = 1;
 
 	/** additional props */
+	/** @type {number} */
+	export let width = undefined;
+
+	/** @type {number} */
+	export let height = undefined;
+
 	export let pixelRatio = typeof devicePixelRatio !== 'undefined' ? devicePixelRatio : 1;
+
+	/** @type {number} */
+	let _width;
+
+	/** @type {number} */
+	let _height;
 
 	/** @type {HTMLElement} */
 	let container;
@@ -154,13 +166,13 @@
 	});
 
 	const resize = () => {
-		const w = container.clientWidth;
-		const h = container.clientHeight;
+		if (width === undefined) {
+			_width = container.clientWidth / pixelRatio;
+		}
 
-		context.renderer.setSize(w, h);
-		context.camera.callback(w, h);
-
-		invalidate();
+		if (height === undefined) {
+			_height = container.clientHeight / pixelRatio;
+		}
 	};
 
 	$: if (context.scene) {
@@ -196,7 +208,14 @@
 	}
 
 	$: if (context.renderer) {
+		const w = width !== undefined ? width : _width;
+		const h = height !== undefined ? height : _height;
+
+		context.renderer.setSize(w, h, false);
+		context.camera.callback(w, h);
 		context.renderer.setPixelRatio(pixelRatio);
+
+		invalidate();
 	}
 </script>
 
