@@ -3,6 +3,7 @@
 ## 0.0.7
 
 - Allow width/height to be explicit
+- Fix OrbitControls bug
 
 ## 0.0.6
 
