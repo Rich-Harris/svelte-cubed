@@ -52,7 +52,7 @@
 		controls.addEventListener('change', e => {
 			dispatch('change', e);
 
-			if (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2]) {
+			if (!target || (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2])) {
 				target = [controls.target.x, controls.target.y, controls.target.z];
 			}
 
