@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.9
+
+- Invalidate AmbientLight on change
+
 ## 0.0.8
 
 - Fix OrbitControls bug
