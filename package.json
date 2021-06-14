@@ -9,7 +9,7 @@
 		"prepublishOnly": "echo \"Did you mean to run 'svelte-kit package' and publish the generated directory?\" && exit 1",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write --plugin-search-dir=. .",
-		"postversion": "git push && git push --tags",
+		"postversion": "git push && git push --tags && npm run release",
 		"release": "npm run package && npm publish package"
 	},
 	"devDependencies": {
