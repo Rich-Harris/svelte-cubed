@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.10.0
+
+- Add `HemisphereLight`
+
 ## 0.0.9
 
 - Invalidate AmbientLight on change
