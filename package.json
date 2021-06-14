@@ -1,6 +1,6 @@
 {
 	"name": "svelte-three",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
