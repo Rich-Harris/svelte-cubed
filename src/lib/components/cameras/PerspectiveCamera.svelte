@@ -8,7 +8,7 @@
 	export let zoom = 1;
 
 	export let position = [0, 0, 5];
-	export let target = [0, 0, 0]; // TODO accept an object/vector?
+	export let target = position; // TODO accept an object/vector?
 
 	const root = get_root();
 
