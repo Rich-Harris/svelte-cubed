@@ -21,8 +21,7 @@
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.2.0",
 		"svelte": "^3.34.0",
-		"three": "^0.128.0",
-		"three-stdlib": "^2.0.3"
+		"three": "^0.128.0"
 	},
 	"type": "module",
 	"pnpm": {

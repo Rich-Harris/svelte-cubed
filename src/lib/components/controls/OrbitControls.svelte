@@ -1,7 +1,7 @@
 <script>
 	import * as THREE from 'three';
 	import { get_root } from '../../utils/context.js';
-	import { OrbitControls } from 'three-stdlib';
+	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 	import { createEventDispatcher, onMount } from 'svelte';
 
 	export let autoRotate = false;
