@@ -22,3 +22,4 @@ export { default as Animation } from './components/animation/Animation.svelte';
 
 // utils
 export { onFrame } from './utils/lifecycle.js';
+export { getInvalidator } from './utils/context.js';

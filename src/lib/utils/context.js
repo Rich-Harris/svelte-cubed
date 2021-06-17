@@ -33,3 +33,7 @@ export function set_object(context) {
 export function get_object() {
 	return getContext(OBJECT);
 }
+
+export function getInvalidator() {
+	return get_root().invalidate;
+}

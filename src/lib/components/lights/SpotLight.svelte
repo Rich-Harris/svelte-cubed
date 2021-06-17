@@ -10,10 +10,10 @@
 	export let penumbra = 0;
 	export let decay = 1;
 
-	/** @type {import('../types').Position} */
+	/** @type {import('../../types').Position} */
 	export let position = [0, 0, 0];
 
-	/** @type {import('../types').Position} */
+	/** @type {import('../../types').Position} */
 	export let target = [0, 0, 0];
 
 	/**

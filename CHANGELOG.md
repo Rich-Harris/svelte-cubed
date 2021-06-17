@@ -1,6 +1,10 @@
 # svelte-three changelog
 
-## 0.10.0
+## 0.0.11
+
+- Add `getInvalidator` function
+
+## 0.0.10
 
 - Add `HemisphereLight`
 
