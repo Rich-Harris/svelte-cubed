@@ -2,7 +2,7 @@
 	import * as THREE from 'three';
 	import { Scene, Mesh, PerspectiveCamera, OrthographicCamera, OrbitControls, AmbientLight, PointLight, DirectionalLight, SpotLight, Primitive } from '$lib/index.js';
 	import { onMount } from 'svelte';
-	import { GLTFLoader } from 'three-stdlib';
+	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 	// /** @type {THREE.Object3D} */
 	// let object;
