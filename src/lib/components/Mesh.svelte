@@ -14,6 +14,8 @@
 	export let castShadow = false;
 	export let receiveShadow = false;
 
+	// TODO morphTargetInfluences, morphTargetDictionary, raycast
+
 	const { root, self } = setup(new THREE.Mesh());
 
 	$: {
