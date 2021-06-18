@@ -1,8 +1,8 @@
 <script>
 	import * as THREE from 'three';
-	import { setup } from '../utils/context.js';
-	import { transform } from '../utils/object.js';
-	import * as defaults from '../utils/defaults.js';
+	import { setup } from '../../utils/context.js';
+	import { transform } from '../../utils/object.js';
+	import * as defaults from '../../utils/defaults.js';
 
 	/** @type {THREE.Object3D} */
 	export let object;

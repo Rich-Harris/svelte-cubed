@@ -1,8 +1,8 @@
 <script>
 	import * as THREE from 'three';
-	import { setup } from '../utils/context.js';
-	import { transform } from '../utils/object.js';
-	import * as defaults from '../utils/defaults.js';
+	import { setup } from '../../utils/context.js';
+	import { transform } from '../../utils/object.js';
+	import * as defaults from '../../utils/defaults.js';
 
 	/** @type {THREE.BufferGeometry} */
 	export let geometry;
@@ -16,7 +16,7 @@
 
 	// TODO morphTargetInfluences, morphTargetDictionary, raycast
 
-	const { root, self } = setup(new THREE.Mesh());
+	const { root, self } = setup(new THREE.Mesh(geometry, material));
 
 	$: {
 		if (self.geometry && geometry !== self.geometry) {

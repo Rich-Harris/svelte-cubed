@@ -1,7 +1,12 @@
 export { default as Scene } from './components/Scene.svelte';
-export { default as Group } from './components/Group.svelte';
-export { default as Mesh } from './components/Mesh.svelte';
-export { default as Primitive } from './components/Primitive.svelte';
+
+// objects
+export { default as Bone } from './components/objects/Bone.svelte';
+export { default as Group } from './components/objects/Group.svelte';
+export { default as Mesh } from './components/objects/Mesh.svelte';
+export { default as Skeleton } from './components/objects/Skeleton.svelte';
+export { default as SkinnedMesh } from './components/objects/SkinnedMesh.svelte';
+export { default as Primitive } from './components/objects/Primitive.svelte';
 
 // cameras
 export { default as PerspectiveCamera } from './components/cameras/PerspectiveCamera.svelte';
@@ -19,6 +24,9 @@ export { default as SpotLight } from './components/lights/SpotLight.svelte';
 
 // animation
 export { default as Animation } from './components/animation/Animation.svelte';
+
+// helpers
+export { default as SkeletonHelper } from './components/helpers/SkeletonHelper.svelte';
 
 // utils
 export { onFrame } from './utils/lifecycle.js';

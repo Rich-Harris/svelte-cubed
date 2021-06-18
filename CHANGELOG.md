@@ -1,5 +1,10 @@
 # svelte-three changelog
 
+## 0.0.12
+
+- Add `SkinnedMesh`, `Skeleton`, `SkeletonHelper` and `Bone` components
+- Internal rewrite
+
 ## 0.0.11
 
 - Add `getInvalidator` function
