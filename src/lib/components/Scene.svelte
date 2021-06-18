@@ -1,5 +1,5 @@
 <script>
-	import { set_group, set_root } from '../utils/context.js';
+	import { set_root } from '../utils/context.js';
 	import { onMount, onDestroy } from 'svelte';
 	import * as THREE from 'three';
 
@@ -86,8 +86,7 @@
 		});
 	}
 
-	/** @type {import('../types/context').RootContext} */
-	const context = {
+	const context = set_root({
 		canvas: null,
 		scene: null,
 		renderer: null,
@@ -122,24 +121,6 @@
 		},
 
 		invalidate
-	};
-
-	set_root(context);
-
-	set_group({
-		add: object => {
-			context.scene.add(object);
-			invalidate();
-
-			onDestroy(() => {
-				context.scene.remove(object);
-				invalidate();
-			});
-		},
-		remove: object => {
-			context.scene.remove(object);
-			invalidate();
-		}
 	});
 
 	onMount(() => {

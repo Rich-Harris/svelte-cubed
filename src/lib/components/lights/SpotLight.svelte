@@ -1,5 +1,5 @@
 <script>
-	import { get_group, get_root } from '../../utils/context';
+	import { context } from '../../utils/context';
 	import * as THREE from 'three';
 
 	/** @type {string | number | THREE.Color} */
@@ -26,12 +26,12 @@
 	 */
 	export let shadow = null;
 
+	const { invalidate, parent } = context();
+
 	const light = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
-	get_group().add(light);
+	$parent.add(light);
 
 	const target_vector = new THREE.Vector3();
-
-	const { invalidate } = get_root();
 
 	$: {
 		light.color.set(color);

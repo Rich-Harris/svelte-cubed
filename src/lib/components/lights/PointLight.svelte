@@ -1,5 +1,5 @@
 <script>
-	import { get_group, get_root } from '../../utils/context';
+	import { context } from '../../utils/context';
 	import * as THREE from 'three';
 
 	/** @type {string | number | THREE.Color} */
@@ -8,7 +8,7 @@
 	export let distance = 100;
 	export let decay = 1;
 
-	/** @type {import('../types').Position} */
+	/** @type {import('../../types').Position} */
 	export let position = [0, 0, 0];
 
 	/**
@@ -21,10 +21,10 @@
 	 */
 	export let shadow = null;
 
-	const light = new THREE.PointLight(color, intensity, distance, decay);
-	get_group().add(light);
+	const { invalidate, parent } = context();
 
-	const { invalidate } = get_root();
+	const light = new THREE.PointLight(color, intensity, distance, decay);
+	$parent.add(light);
 
 	$: {
 		light.color.set(color);

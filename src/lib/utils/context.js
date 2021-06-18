@@ -1,37 +1,39 @@
 import { getContext, setContext } from 'svelte';
+import { writable } from 'svelte/store';
 
 const ROOT = {};
-const GROUP = {};
-const OBJECT = {};
+const PARENT = {};
+
+/**
+ * @returns {{
+ *   invalidate: () => void;
+ *   parent: import('svelte/store').Readable<any>;
+ *   self: import('svelte/store').Writable<any>;
+ * }}
+ */
+export function context() {
+	const root = getContext(ROOT)();
+	const parent = getContext(PARENT) || writable(root.scene);
+
+	const self = writable(undefined);
+	setContext(PARENT, self);
+
+	return {
+		invalidate: root.invalidate,
+		parent: parent && { subscribe: parent.subscribe },
+		self
+	};
+}
 
 /** @param {import('../types/context').RootContext} context */
 export function set_root(context) {
 	setContext(ROOT, context);
+	return context;
 }
 
 /** @returns {import('../types/context').RootContext} */
-export function get_root() {
+function get_root() {
 	return getContext(ROOT);
-}
-
-/** @param {import('../types/context').GroupContext} context */
-export function set_group(context) {
-	setContext(GROUP, context);
-}
-
-/** @returns {import('../types/context').GroupContext} */
-export function get_group() {
-	return getContext(GROUP);
-}
-
-/** @param {import('../types/context').ObjectContext} context */
-export function set_object(context) {
-	setContext(OBJECT, context);
-}
-
-/** @returns {import('../types/context').ObjectContext} */
-export function get_object() {
-	return getContext(OBJECT);
 }
 
 export function getInvalidator() {

@@ -1,39 +1,28 @@
 <script>
 	import * as THREE from 'three';
-	import { onDestroy } from 'svelte';
-	import { get_group, get_root, set_group } from '../utils/context.js';
+	import { context } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
 	import * as defaults from '../utils/defaults.js';
+	import { onDestroy } from 'svelte';
 
 	export let position = defaults.position;
 	export let rotation = defaults.rotation;
 	export let scale = defaults.scale;
 
-	const { invalidate } = get_root();
-	const object = new THREE.Group();
+	const { invalidate, parent, self } = context();
 
-	get_group().add(object);
-
-	set_group({
-		add(child) {
-			object.add(child);
-			invalidate();
-
-			onDestroy(() => {
-				object.remove(child);
-				invalidate();
-			});
-		},
-		remove(child) {
-			object.remove(child);
-			invalidate();
-		}
-	});
+	$self = new THREE.Group();
+	$parent.add($self);
 
 	$: {
-		transform(object, position, rotation, scale);
+		transform($self, position, rotation, scale);
 		invalidate();
 	}
+
+	onDestroy(() => {
+		$parent.remove($self);
+		invalidate();
+	});
 </script>
 
 <slot></slot>

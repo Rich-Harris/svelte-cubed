@@ -1,7 +1,7 @@
 <script>
+	import { onDestroy } from 'svelte';
 	import * as THREE from 'three';
-	import { writable } from 'svelte/store';
-	import { get_group, get_root, set_object } from '../utils/context.js';
+	import { context } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
 	import * as defaults from '../utils/defaults.js';
 
@@ -15,38 +15,36 @@
 	export let castShadow = false;
 	export let receiveShadow = false;
 
-	const { invalidate } = get_root();
-	const group = get_group();
-
-	const context = {
-		current: writable(undefined)
-	};
-
-	set_object(context);
-
-	/** @type {THREE.Mesh} */
-	let object;
+	/** @type {import('../types/context').Context<import('three').Mesh>} */
+	const { invalidate, parent, self } = context();
 
 	$: {
-		if (object) {
-			group.remove(object); // TODO need to move children to new object
-			if (object.geometry !== geometry) object.geometry.dispose();
+		if ($self) {
+			// TODO need to move children to new object
+			$parent.remove($self);
+
+			// TODO geometry might be used by another object?
+			if ($self.geometry !== geometry) {
+				$self.geometry.dispose();
+			}
 		}
 
-		object = new THREE.Mesh(geometry, material);
-		group.add(object);
-
-		context.current.set(object);
+		$self = new THREE.Mesh(geometry, material);
+		$parent.add($self);
+		invalidate();
 	}
 
 	$: {
-		object.castShadow = castShadow;
-		object.receiveShadow = receiveShadow;
-		transform(object, position, rotation, scale);
+		$self.castShadow = castShadow;
+		$self.receiveShadow = receiveShadow;
+		transform($self, position, rotation, scale);
 		invalidate();
 	}
+
+	onDestroy(() => {
+		$parent.remove($self);
+		invalidate();
+	});
 </script>
 
-{#if object}
-	<slot></slot>
-{/if}
+<slot></slot>

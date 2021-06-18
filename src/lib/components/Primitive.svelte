@@ -1,7 +1,7 @@
 <script>
-	import { writable } from 'svelte/store';
+	import { onDestroy } from 'svelte';
 	import * as THREE from 'three';
-	import { get_group, get_root, set_object } from '../utils/context.js';
+	import { context } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
 	import * as defaults from '../utils/defaults.js';
 
@@ -12,33 +12,21 @@
 	export let rotation = defaults.rotation;
 	export let scale = defaults.scale;
 
-	const { invalidate } = get_root();
-	const group = get_group();
+	const { invalidate, parent, self } = context();
+
 	const container = new THREE.Object3D();
-
-	group.add(container);
-
-	const context = {
-		current: writable(undefined)
-	};
-
-	set_object(context);
-
-	/** @type {THREE.Object3D} */
-	let previous_object;
+	$parent.add(container);
 
 	$: {
-		if (previous_object) {
-			container.remove(previous_object);
+		if ($self) {
+			container.remove($self);
 		}
 
 		if (object) {
 			container.add(object);
 		}
 
-		previous_object = object;
-		context.current.set(object);
-
+		$self = object;
 		invalidate();
 	}
 
@@ -46,6 +34,11 @@
 		transform(container, position, rotation, scale);
 		invalidate();
 	}
+
+	onDestroy(() => {
+		$parent.remove(container);
+		invalidate();
+	});
 </script>
 
 {#if object}
