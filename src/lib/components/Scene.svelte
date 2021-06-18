@@ -138,6 +138,7 @@
 		},
 		remove: object => {
 			context.scene.remove(object);
+			invalidate();
 		}
 	});
 
