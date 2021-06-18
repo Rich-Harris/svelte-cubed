@@ -1,6 +1,6 @@
 <script>
 	import * as THREE from 'three';
-	import { get_root, get_object } from '../../utils/context.js';
+	import { setup } from '../../utils/context.js';
 
 	/** @type {THREE.AnimationClip} */
 	export let clip;
@@ -9,18 +9,15 @@
 	export let timeScale = 1;
 	export let weight = 1;
 
-	const { current } = get_object();
+	const { root, parent } = setup();
 
 	/** @type {THREE.AnimationMixer} */
-	let mixer;
+	const mixer = new THREE.AnimationMixer(parent);
 
 	/** @type {THREE.AnimationAction} */
 	let action;
 
-	const { invalidate } = get_root();
-
 	$: {
-		mixer = new THREE.AnimationMixer($current);
 		action = mixer.clipAction(clip);
 		action.play();
 
@@ -33,7 +30,7 @@
 		mixer.timeScale = timeScale;
 		mixer.setTime(time);
 
-		invalidate();
+		root.invalidate();
 	}
 </script>
 

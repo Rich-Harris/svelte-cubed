@@ -1,8 +1,9 @@
 <script>
 	import * as THREE from 'three';
-	import { get_root } from '../../utils/context.js';
+	import { setup } from '../../utils/context.js';
 	import { OrbitControls } from 'three-stdlib';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
+import { onFrame } from '../../utils/lifecycle.js';
 
 	export let autoRotate = false;
 	export let autoRotateSpeed = 2;
@@ -32,7 +33,7 @@
 	/** @type {import('../../types').Position} */
 	export let target;
 
-	const root = get_root();
+	const { root } = setup();
 	const dispatch = createEventDispatcher();
 
 	/** @type {OrbitControls} */
@@ -64,18 +65,10 @@
 		return controls;
 	});
 
-	onMount(() => {
-		let frame = requestAnimationFrame(function loop() {
-			frame = requestAnimationFrame(loop);
-
-			if (controls && (autoRotate || enableDamping)) {
+	onFrame(() => {
+		if (controls && (autoRotate || enableDamping)) {
 				controls.update();
 			}
-		});
-
-		return () => {
-			cancelAnimationFrame(frame);
-		};
 	});
 
 	$: if (target && (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2])) {

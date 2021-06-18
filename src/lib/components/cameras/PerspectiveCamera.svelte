@@ -1,5 +1,5 @@
 <script>
-	import { get_root } from '../../utils/context.js';
+	import { setup } from '../../utils/context.js';
 	import { PerspectiveCamera, Vector3 } from 'three';
 
 	export let fov = 45;
@@ -10,27 +10,26 @@
 	export let position = [0, 0, 5];
 	export let target = [0, 0, 0]; // TODO accept an object/vector?
 
-	const root = get_root();
+	const { root, self } = setup(new PerspectiveCamera());
 
-	const camera = new PerspectiveCamera(fov, root.canvas.clientWidth / root.canvas.clientHeight, near, far);
 	const target_vector = new Vector3();
 
-	root.camera.set(camera, (w, h) => {
-		camera.aspect = w / h;
-		camera.updateProjectionMatrix();
+	root.camera.set(self, (w, h) => {
+		self.aspect = w / h;
+		self.updateProjectionMatrix();
 	});
 
 	$: {
-		camera.fov = fov;
-		camera.near = near;
-		camera.far = far;
-		camera.zoom = zoom;
+		self.fov = fov;
+		self.near = near;
+		self.far = far;
+		self.zoom = zoom;
 
-		camera.position.set(position[0], position[1], position[2]);
+		self.position.set(position[0], position[1], position[2]);
 		target_vector.set(target[0], target[1], target[2]);
-		camera.lookAt(target_vector);
+		self.lookAt(target_vector);
 
-		camera.updateProjectionMatrix();
+		self.updateProjectionMatrix();
 		root.invalidate();
 	}
 </script>

@@ -82,11 +82,11 @@
 
 		frame = requestAnimationFrame(() => {
 			frame = null;
-			context.renderer.render(context.scene, context.camera.object);
+			root.renderer.render(root.scene, root.camera.object);
 		});
 	}
 
-	const context = set_root({
+	const root = set_root({
 		canvas: null,
 		scene: null,
 		renderer: null,
@@ -97,11 +97,11 @@
 				console.warn('no camera is set');
 			},
 			set: (camera, callback) => {
-				context.camera.object = camera;
-				context.camera.callback = callback;
+				root.camera.object = camera;
+				root.camera.callback = callback;
 
-				if (context.controls.callback) {
-					context.controls.callback(context.camera.object, context.canvas);
+				if (root.controls.callback) {
+					root.controls.callback(root.camera.object, root.canvas);
 				}
 
 				invalidate();
@@ -112,10 +112,10 @@
 			object: null,
 			callback: null,
 			set: (callback) => {
-				context.controls.callback = callback;
+				root.controls.callback = callback;
 
-				if (context.camera.object) {
-					context.controls.object = callback(context.camera.object, context.canvas);
+				if (root.camera.object) {
+					root.controls.object = callback(root.camera.object, root.canvas);
 				}
 			}
 		},
@@ -124,8 +124,8 @@
 	});
 
 	onMount(() => {
-		context.renderer = new THREE.WebGLRenderer({
-			canvas: context.canvas,
+		root.renderer = new THREE.WebGLRenderer({
+			canvas: root.canvas,
 			precision,
 			powerPreference,
 			alpha,
@@ -138,12 +138,12 @@
 			logarithmicDepthBuffer
 		});
 
-		context.scene = new THREE.Scene();
+		root.scene = new THREE.Scene();
 
 		resize();
 
 		return () => {
-			context.renderer.dispose();
+			root.renderer.dispose();
 		};
 	});
 
@@ -157,45 +157,45 @@
 		}
 	};
 
-	$: if (context.scene) {
-		context.scene.background = background;
-		context.scene.environment = environment;
-		context.scene.fog = fog;
-		context.scene.overrideMaterial = overrideMaterial;
+	$: if (root.scene) {
+		root.scene.background = background;
+		root.scene.environment = environment;
+		root.scene.fog = fog;
+		root.scene.overrideMaterial = overrideMaterial;
 	}
 
-	$: if (context.renderer) {
-		context.renderer.autoClear = autoClear;
-		context.renderer.autoClearColor = autoClearColor;
-		context.renderer.autoClearDepth = autoClearDepth;
-		context.renderer.autoClearStencil = autoClearStencil;
-		context.renderer.debug.checkShaderErrors = checkShaderErrors;
-		context.renderer.gammaFactor = gammaFactor;
-		context.renderer.localClippingEnabled = localClippingEnabled;
-		context.renderer.physicallyCorrectLights = physicallyCorrectLights;
-		if (outputEncoding != null) context.renderer.outputEncoding = outputEncoding;
-		context.renderer.clippingPlanes = clippingPlanes;
-		context.renderer.toneMapping = toneMapping;
-		context.renderer.toneMappingExposure = toneMappingExposure;
+	$: if (root.renderer) {
+		root.renderer.autoClear = autoClear;
+		root.renderer.autoClearColor = autoClearColor;
+		root.renderer.autoClearDepth = autoClearDepth;
+		root.renderer.autoClearStencil = autoClearStencil;
+		root.renderer.debug.checkShaderErrors = checkShaderErrors;
+		root.renderer.gammaFactor = gammaFactor;
+		root.renderer.localClippingEnabled = localClippingEnabled;
+		root.renderer.physicallyCorrectLights = physicallyCorrectLights;
+		if (outputEncoding != null) root.renderer.outputEncoding = outputEncoding;
+		root.renderer.clippingPlanes = clippingPlanes;
+		root.renderer.toneMapping = toneMapping;
+		root.renderer.toneMappingExposure = toneMappingExposure;
 
 		if (shadows) {
-			context.renderer.shadowMap.enabled = true;
-			context.renderer.shadowMap.autoUpdate = true; // TODO allow some way to control this?
-			context.renderer.shadowMap.type = shadows === true ? THREE.PCFShadowMap : shadows;
+			root.renderer.shadowMap.enabled = true;
+			root.renderer.shadowMap.autoUpdate = true; // TODO allow some way to control this?
+			root.renderer.shadowMap.type = shadows === true ? THREE.PCFShadowMap : shadows;
 		} else {
-			context.renderer.shadowMap.enabled = false;
+			root.renderer.shadowMap.enabled = false;
 		}
 
 		invalidate();
 	}
 
-	$: if (context.renderer) {
+	$: if (root.renderer) {
 		const w = width !== undefined ? width : _width;
 		const h = height !== undefined ? height : _height;
 
-		context.renderer.setSize(w, h, false);
-		context.camera.callback(w, h);
-		context.renderer.setPixelRatio(pixelRatio);
+		root.renderer.setSize(w, h, false);
+		root.camera.callback(w, h);
+		root.renderer.setPixelRatio(pixelRatio);
 
 		invalidate();
 	}
@@ -204,9 +204,9 @@
 <svelte:window on:resize={resize}/>
 
 <div class="container" bind:this={container}>
-	<canvas bind:this={context.canvas}/>
+	<canvas bind:this={root.canvas}/>
 
-	{#if context.scene}
+	{#if root.scene}
 		<slot></slot>
 	{/if}
 </div>

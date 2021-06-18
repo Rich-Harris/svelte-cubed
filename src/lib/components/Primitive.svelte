@@ -1,7 +1,6 @@
 <script>
-	import { onDestroy } from 'svelte';
 	import * as THREE from 'three';
-	import { context } from '../utils/context.js';
+	import { setup } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
 	import * as defaults from '../utils/defaults.js';
 
@@ -12,33 +11,28 @@
 	export let rotation = defaults.rotation;
 	export let scale = defaults.scale;
 
-	const { invalidate, parent, self } = context();
+	const { root, self } = setup(new THREE.Object3D());
 
-	const container = new THREE.Object3D();
-	$parent.add(container);
+	/** @type {THREE.Object3D} */
+	let previous;
 
 	$: {
-		if ($self) {
-			container.remove($self);
+		if (previous) {
+			self.remove(previous);
 		}
 
 		if (object) {
-			container.add(object);
+			self.add(object);
 		}
 
-		$self = object;
-		invalidate();
+		previous = object;
+		root.invalidate();
 	}
 
 	$: {
-		transform(container, position, rotation, scale);
-		invalidate();
+		transform(self, position, rotation, scale);
+		root.invalidate();
 	}
-
-	onDestroy(() => {
-		$parent.remove(container);
-		invalidate();
-	});
 </script>
 
 {#if object}

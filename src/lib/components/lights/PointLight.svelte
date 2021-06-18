@@ -1,5 +1,5 @@
 <script>
-	import { context } from '../../utils/context';
+	import { setup } from '../../utils/context';
 	import * as THREE from 'three';
 
 	/** @type {string | number | THREE.Color} */
@@ -21,20 +21,17 @@
 	 */
 	export let shadow = null;
 
-	const { invalidate, parent } = context();
-
-	const light = new THREE.PointLight(color, intensity, distance, decay);
-	$parent.add(light);
+	const { root, self } = setup(new THREE.PointLight());
 
 	$: {
-		light.color.set(color);
-		light.intensity = intensity;
-		light.distance = distance;
-		light.decay = decay;
+		self.color.set(color);
+		self.intensity = intensity;
+		self.distance = distance;
+		self.decay = decay;
 
-		light.position.set(position[0], position[1], position[2]);
+		self.position.set(position[0], position[1], position[2]);
 
-		invalidate();
+		root.invalidate();
 	}
 
 	$: {
@@ -46,17 +43,17 @@
 				radius = 1,
 			} = shadow === true ? {} : shadow;
 
-			light.shadow.mapSize.set(mapSize[0], mapSize[1]);
-			light.shadow.camera.near = near;
-			light.shadow.camera.far = far;
-			light.shadow.bias = bias;
-			light.shadow.radius = radius;
+			self.shadow.mapSize.set(mapSize[0], mapSize[1]);
+			self.shadow.camera.near = near;
+			self.shadow.camera.far = far;
+			self.shadow.bias = bias;
+			self.shadow.radius = radius;
 
-			light.castShadow = true;
+			self.castShadow = true;
 		} else {
-			light.castShadow = false;
+			self.castShadow = false;
 		}
 
-		invalidate();
+		root.invalidate();
 	}
 </script>

@@ -1,15 +1,15 @@
 <script>
-	import { get_group, get_root } from '../../utils/context';
+	import { setup } from '../../utils/context';
 	import * as THREE from 'three';
 
 	/** @type {string | number | THREE.Color} */
 	export let color = 0xffffff;
 	export let intensity = 1;
 
-	/** @type {import('../types').Position} */
+	/** @type {import('../../types').Position} */
 	export let position = [0, 1, 0];
 
-	/** @type {import('../types').Position} */
+	/** @type {import('../../types').Position} */
 	export let target = [0, 0, 0];
 
 	/**
@@ -22,19 +22,16 @@
 	 */
 	export let shadow = null;
 
-	const light = new THREE.DirectionalLight(color, intensity);
-	get_group().add(light);
-
-	const { invalidate } = get_root();
+	const { root, self } = setup(new THREE.DirectionalLight());
 
 	$: {
-		light.color.set(color);
-		light.intensity = intensity;
+		self.color.set(color);
+		self.intensity = intensity;
 
-		light.position.set(position[0], position[1], position[2]);
-		light.target.position.set(target[0], target[1], target[2]);
+		self.position.set(position[0], position[1], position[2]);
+		self.target.position.set(target[0], target[1], target[2]);
 
-		invalidate();
+		root.invalidate();
 	}
 
 	$: {
@@ -46,21 +43,21 @@
 				radius = 1,
 			} = shadow === true ? {} : shadow;
 
-			light.shadow.mapSize.set(mapSize[0], mapSize[1]);
-			light.shadow.camera.left = left;
-			light.shadow.camera.top = top;
-			light.shadow.camera.right = right;
-			light.shadow.camera.bottom = bottom;
-			light.shadow.camera.near = near;
-			light.shadow.camera.far = far;
-			light.shadow.bias = bias;
-			light.shadow.radius = radius;
+			self.shadow.mapSize.set(mapSize[0], mapSize[1]);
+			self.shadow.camera.left = left;
+			self.shadow.camera.top = top;
+			self.shadow.camera.right = right;
+			self.shadow.camera.bottom = bottom;
+			self.shadow.camera.near = near;
+			self.shadow.camera.far = far;
+			self.shadow.bias = bias;
+			self.shadow.radius = radius;
 
-			light.castShadow = true;
+			self.castShadow = true;
 		} else {
-			light.castShadow = false;
+			self.castShadow = false;
 		}
 
-		invalidate();
+		root.invalidate();
 	}
 </script>

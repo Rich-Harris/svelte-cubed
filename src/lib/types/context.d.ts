@@ -22,12 +22,6 @@ export type RootContext = {
 	invalidate: () => void;
 };
 
-export type Context<T> = {
-	invalidate: () => void;
-	parent: import('svelte/store').Readable<THREE.Object3D>;
-	self: import('svelte/store').Writable<T>;
-};
-
 export type GroupContext = {
 	add: (object: THREE.Object3D) => void;
 	remove: (object: THREE.Object3D) => void;

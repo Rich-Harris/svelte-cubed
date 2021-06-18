@@ -1,26 +1,35 @@
-import { getContext, setContext } from 'svelte';
-import { writable } from 'svelte/store';
+import { getContext, setContext, onDestroy } from 'svelte';
 
 const ROOT = {};
 const PARENT = {};
 
 /**
+ * @template T
+ * @param {T} [self]
  * @returns {{
- *   invalidate: () => void;
- *   parent: import('svelte/store').Readable<any>;
- *   self: import('svelte/store').Writable<any>;
+ *   root: import('../types/context').RootContext;
+ *   parent: THREE.Object3D;
+ *   self: T;
  * }}
  */
-export function context() {
-	const root = getContext(ROOT)();
-	const parent = getContext(PARENT) || writable(root.scene);
+export function setup(self) {
+	const root = getContext(ROOT);
+	const parent = getContext(PARENT) || root.scene;
 
-	const self = writable(undefined);
-	setContext(PARENT, self);
+	if (self) {
+		setContext(PARENT, self);
+
+		parent.add(self);
+
+		onDestroy(() => {
+			parent.remove(self);
+			root.invalidate();
+		});
+	}
 
 	return {
-		invalidate: root.invalidate,
-		parent: parent && { subscribe: parent.subscribe },
+		root,
+		parent,
 		self
 	};
 }
@@ -31,11 +40,6 @@ export function set_root(context) {
 	return context;
 }
 
-/** @returns {import('../types/context').RootContext} */
-function get_root() {
-	return getContext(ROOT);
-}
-
 export function getInvalidator() {
-	return get_root().invalidate;
+	return getContext(ROOT).invalidate;
 }

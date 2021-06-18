@@ -1,7 +1,6 @@
 <script>
-	import { onDestroy } from 'svelte';
 	import * as THREE from 'three';
-	import { context } from '../utils/context.js';
+	import { setup } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
 	import * as defaults from '../utils/defaults.js';
 
@@ -15,36 +14,21 @@
 	export let castShadow = false;
 	export let receiveShadow = false;
 
-	/** @type {import('../types/context').Context<import('three').Mesh>} */
-	const { invalidate, parent, self } = context();
+	const { root, self } = setup(new THREE.Mesh());
 
 	$: {
-		if ($self) {
-			// TODO need to move children to new object
-			$parent.remove($self);
-
+		if (self.geometry && geometry !== self.geometry) {
 			// TODO geometry might be used by another object?
-			if ($self.geometry !== geometry) {
-				$self.geometry.dispose();
-			}
+			self.geometry.dispose();
 		}
 
-		$self = new THREE.Mesh(geometry, material);
-		$parent.add($self);
-		invalidate();
+		self.geometry = geometry;
+		self.material = material;
+		self.castShadow = castShadow;
+		self.receiveShadow = receiveShadow;
+		transform(self, position, rotation, scale);
+		root.invalidate();
 	}
-
-	$: {
-		$self.castShadow = castShadow;
-		$self.receiveShadow = receiveShadow;
-		transform($self, position, rotation, scale);
-		invalidate();
-	}
-
-	onDestroy(() => {
-		$parent.remove($self);
-		invalidate();
-	});
 </script>
 
 <slot></slot>
