@@ -3,15 +3,11 @@
 	import { onDestroy } from 'svelte';
 	import { get_group, get_root, set_group } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
+	import * as defaults from '../utils/defaults.js';
 
-	/** @type {import('../types').Position} */
-	export let position = [0, 0, 0];
-
-	/** @type {import('../types').Rotation} */
-	export let rotation = [0, 0, 0];
-
-	/** @type {import('../types').Scale} */
-	export let scale = [1, 1, 1];
+	export let position = defaults.position;
+	export let rotation = defaults.rotation;
+	export let scale = defaults.scale;
 
 	const { invalidate } = get_root();
 	const object = new THREE.Group();

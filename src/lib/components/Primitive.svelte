@@ -3,18 +3,14 @@
 	import * as THREE from 'three';
 	import { get_group, get_root, set_object } from '../utils/context.js';
 	import { transform } from '../utils/object.js';
+	import * as defaults from '../utils/defaults.js';
 
 	/** @type {THREE.Object3D} */
 	export let object;
 
-	/** @type {import('../types').Position} */
-	export let position = [0, 0, 0];
-
-	/** @type {import('../types').Rotation} */
-	export let rotation = [0, 0, 0];
-
-	/** @type {import('../types').Scale} */
-	export let scale = 1;
+	export let position = defaults.position;
+	export let rotation = defaults.rotation;
+	export let scale = defaults.scale;
 
 	const { invalidate } = get_root();
 	const group = get_group();
