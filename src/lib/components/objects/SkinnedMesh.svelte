@@ -48,8 +48,6 @@
 			weights.push(...normalised);
 		}
 
-		console.log({ indices, weights });
-
 		return {
 			index: new THREE.Uint16BufferAttribute(indices, 4),
 			weight: new THREE.Float32BufferAttribute(weights, 4)
@@ -65,12 +63,31 @@
 		let _skin;
 
 		if (typeof skin === 'function') {
-			const matrix = new THREE.Matrix4().identity();
+			/** @type {Map<THREE.Bone, THREE.Vector3>} */
+			const map = new Map();
 
-			const positions = self.skeleton.bones.map((bone) => {
+			/**
+			 * @param {THREE.Bone} bone
+			 * @param {THREE.Matrix4} matrix
+			 */
+			const add_bone = (bone, matrix) => {
 				matrix.multiplyMatrices(matrix, bone.matrix);
-				return new THREE.Vector3().setFromMatrixPosition(matrix);
+				map.set(bone, new THREE.Vector3().setFromMatrixPosition(matrix));
+
+				bone.children.forEach(child => {
+					if (/** @type {THREE.Bone} */ (child).isBone) {
+						add_bone(/** @type {THREE.Bone} */ (child), matrix.clone());
+					}
+				});
+			};
+
+
+			self.skeleton.bones.filter(bone => bone.parent === self).forEach(bone => {
+				const matrix = new THREE.Matrix4().identity();
+				add_bone(bone, matrix);
 			});
+
+			const positions = self.skeleton.bones.map((bone) => map.get(bone));
 
 			_skin = skin(self.geometry, positions);
 		} else {
