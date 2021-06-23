@@ -1,6 +1,6 @@
 <script>
 	import { set_root } from '../utils/context.js';
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
 	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */

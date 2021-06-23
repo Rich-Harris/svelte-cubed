@@ -1,5 +1,10 @@
 # svelte-three changelog
 
+## 0.0.13
+
+- Add some temporary broken logic for skinning. WIP, will be removed in future
+- Make `renderOrder` configurable
+
 ## 0.0.12
 
 - Add `SkinnedMesh`, `Skeleton`, `SkeletonHelper` and `Bone` components

@@ -6,7 +6,7 @@
 	export let color = 0xffffff;
 	export let intensity = 1;
 
-	const { root, self } = setup(new THREE.AmbientLight());
+	const { root, self } = setup(new THREE.AmbientLight(color, intensity));
 
 	$: {
 		self.color.set(color);
