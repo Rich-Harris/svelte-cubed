@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.14
+
+- Generate proper types, with next version of SvelteKit
+
 ## 0.0.13
 
 - Add some temporary broken logic for skinning. WIP, will be removed in future

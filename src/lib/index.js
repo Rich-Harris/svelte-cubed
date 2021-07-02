@@ -31,3 +31,8 @@ export { default as SkeletonHelper } from './components/helpers/SkeletonHelper.s
 // utils
 export { onFrame } from './utils/lifecycle.js';
 export { getInvalidator } from './utils/context.js';
+
+/** @typedef {import('./types/common').Position} Position */
+/** @typedef {import('./types/common').Rotation} Rotation */
+/** @typedef {import('./types/common').Scale} Scale */
+/** @typedef {import('./types/common').EulerOrder} EulerOrder */
