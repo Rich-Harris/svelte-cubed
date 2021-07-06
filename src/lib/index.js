@@ -27,6 +27,7 @@ export { default as Animation } from './components/animation/Animation.svelte';
 
 // helpers
 export { default as SkeletonHelper } from './components/helpers/SkeletonHelper.svelte';
+export { default as VertexNormalsHelper } from './components/helpers/VertexNormalsHelper.svelte';
 
 // utils
 export { onFrame } from './utils/lifecycle.js';
