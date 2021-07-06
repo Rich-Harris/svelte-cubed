@@ -1,9 +1,9 @@
 <script>
 	import * as THREE from 'three';
 	import { setup } from '../../utils/context.js';
-	import { OrbitControls } from 'three-stdlib';
+	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 	import { createEventDispatcher } from 'svelte';
-import { onFrame } from '../../utils/lifecycle.js';
+	import { onFrame } from '../../utils/lifecycle.js';
 
 	export let autoRotate = false;
 	export let autoRotateSpeed = 2;
@@ -23,7 +23,11 @@ import { onFrame } from '../../utils/lifecycle.js';
 	export let minDistance = 0;
 	export let minPolarAngle = 0;
 	export let minZoom = 0;
-	export let mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+	export let mouseButtons = {
+		LEFT: THREE.MOUSE.ROTATE,
+		MIDDLE: THREE.MOUSE.DOLLY,
+		RIGHT: THREE.MOUSE.PAN
+	};
 	export let panSpeed = 1;
 	export let rotateSpeed = 1;
 	export let screenSpacePanning = true;
@@ -42,18 +46,23 @@ import { onFrame } from '../../utils/lifecycle.js';
 	root.controls.set((camera, canvas) => {
 		controls = new OrbitControls(camera, canvas);
 
-		controls.addEventListener('start', e => {
+		controls.addEventListener('start', (e) => {
 			dispatch('start', e);
 		});
 
-		controls.addEventListener('end', e => {
+		controls.addEventListener('end', (e) => {
 			dispatch('end', e);
 		});
 
-		controls.addEventListener('change', e => {
+		controls.addEventListener('change', (e) => {
 			dispatch('change', e);
 
-			if (!target || (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2])) {
+			if (
+				!target ||
+				controls.target.x !== target[0] ||
+				controls.target.x !== target[1] ||
+				controls.target.x !== target[2]
+			) {
 				target = [controls.target.x, controls.target.y, controls.target.z];
 			}
 
@@ -67,11 +76,16 @@ import { onFrame } from '../../utils/lifecycle.js';
 
 	onFrame(() => {
 		if (controls && (autoRotate || enableDamping)) {
-				controls.update();
-			}
+			controls.update();
+		}
 	});
 
-	$: if (target && (controls.target.x !== target[0] || controls.target.x !== target[1] || controls.target.x !== target[2])) {
+	$: if (
+		target &&
+		(controls.target.x !== target[0] ||
+			controls.target.x !== target[1] ||
+			controls.target.x !== target[2])
+	) {
 		controls.target.set(target[0], target[1], target[2]);
 
 		controls.update();
