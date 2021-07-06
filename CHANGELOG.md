@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.15
+
+- Bump deps
+
 ## 0.0.14
 
 - Generate proper types, with next version of SvelteKit
