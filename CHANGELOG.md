@@ -1,5 +1,11 @@
 # svelte-three changelog
 
+## 0.0.16
+
+- Remove auto-skinning logic
+- Add `VertexNormalsHelper`
+- Use `three/examples` rather than `three-stdlib`
+
 ## 0.0.15
 
 - Bump deps
