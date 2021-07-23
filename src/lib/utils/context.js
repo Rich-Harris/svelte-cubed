@@ -34,6 +34,11 @@ export function setup(self) {
 	};
 }
 
+/** @returns {import('../types/context').RootContext} */
+function get_root() {
+	return getContext(ROOT);
+}
+
 /** @param {import('../types/context').RootContext} context */
 export function set_root(context) {
 	setContext(ROOT, context);
@@ -41,5 +46,9 @@ export function set_root(context) {
 }
 
 export function getInvalidator() {
-	return getContext(ROOT).invalidate;
+	return get_root().invalidate;
+}
+
+export function getCapabilities() {
+	return get_root().renderer.capabilities;
 }

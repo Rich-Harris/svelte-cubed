@@ -1,5 +1,10 @@
 # svelte-three changelog
 
+## 0.0.17
+
+- Update `VertexNormalsHelper` automatically
+- Expose `capabilities`
+
 ## 0.0.16
 
 - Remove auto-skinning logic

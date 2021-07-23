@@ -31,7 +31,10 @@ export { default as VertexNormalsHelper } from './components/helpers/VertexNorma
 
 // utils
 export { onFrame } from './utils/lifecycle.js';
+
+// context
 export { getInvalidator } from './utils/context.js';
+export { getCapabilities } from './utils/context.js';
 
 /** @typedef {import('./types/common').Position} Position */
 /** @typedef {import('./types/common').Rotation} Rotation */
