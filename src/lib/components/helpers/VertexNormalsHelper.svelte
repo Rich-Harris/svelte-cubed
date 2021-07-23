@@ -11,6 +11,10 @@
 	const helper = new VertexNormalsHelper(parent, size, color);
 	root.scene.add(helper);
 
+	root.before_render(() => {
+		helper.update();
+	});
+
 	$: helper.size = size;
 
 	onDestroy(() => {

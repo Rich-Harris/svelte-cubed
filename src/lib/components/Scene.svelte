@@ -1,6 +1,6 @@
 <script>
 	import { set_root } from '../utils/context.js';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import * as THREE from 'three';
 
 	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */
@@ -77,14 +77,21 @@
 	/** @type {number} */
 	let frame = null;
 
+	/** @param {Function} fn */
+	const run = (fn) => fn();
+
 	const invalidate = () => {
 		if (frame) return;
 
 		frame = requestAnimationFrame(() => {
 			frame = null;
+			before_render.forEach(run);
 			root.renderer.render(root.scene, root.camera.object);
 		});
-	}
+	};
+
+	/** @type {Array<() => void>}*/
+	const before_render = [];
 
 	const root = set_root({
 		canvas: null,
@@ -118,6 +125,15 @@
 					root.controls.object = callback(root.camera.object, root.canvas);
 				}
 			}
+		},
+
+		before_render(fn) {
+			before_render.push(fn);
+
+			onDestroy(() => {
+				const i = before_render.indexOf(fn);
+				before_render.splice(i, 1);
+			});
 		},
 
 		invalidate
@@ -201,18 +217,19 @@
 	}
 </script>
 
-<svelte:window on:resize={resize}/>
+<svelte:window on:resize={resize} />
 
 <div class="container" bind:this={container}>
-	<canvas bind:this={root.canvas}/>
+	<canvas bind:this={root.canvas} />
 
 	{#if root.scene}
-		<slot></slot>
+		<slot />
 	{/if}
 </div>
 
 <style>
-	.container, canvas {
+	.container,
+	canvas {
 		position: absolute;
 		width: 100%;
 		height: 100%;

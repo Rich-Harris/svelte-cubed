@@ -19,6 +19,8 @@ export type RootContext = {
 		) => void;
 	};
 
+	before_render: (fn: () => void) => void;
+
 	invalidate: () => void;
 };
 
