@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.0.18
+
+- Expose `viewOffset` on `<PerspectiveCamera>`
+
 ## 0.0.17
 
 - Update `VertexNormalsHelper` automatically
