@@ -13,6 +13,7 @@
 	export let scale = defaults.scale;
 	export let castShadow = false;
 	export let receiveShadow = false;
+	export let frustumCulled = true;
 	export let renderOrder = 0;
 
 	// TODO morphTargetInfluences, morphTargetDictionary, raycast
@@ -29,6 +30,7 @@
 		self.material = material;
 		self.castShadow = castShadow;
 		self.receiveShadow = receiveShadow;
+		self.frustumCulled = frustumCulled;
 		self.renderOrder = renderOrder;
 
 		transform(self, position, rotation, scale);

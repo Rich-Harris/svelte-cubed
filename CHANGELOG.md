@@ -3,6 +3,7 @@
 ## 0.1.0 (unreleased)
 
 - Rename `Scene` to `Canvas`
+- Add `frustumCulled` prop to `<Mesh>` and `<SkinnedMesh>`
 
 ## 0.0.18
 

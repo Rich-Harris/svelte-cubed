@@ -13,6 +13,7 @@
 	export let scale = defaults.scale;
 	export let castShadow = false;
 	export let receiveShadow = false;
+	export let frustumCulled = true;
 	export let renderOrder = 0;
 
 	/** @type {'attached' | 'detached'} */
@@ -33,6 +34,7 @@
 		self.material = material;
 		self.castShadow = castShadow;
 		self.receiveShadow = receiveShadow;
+		self.frustumCulled = frustumCulled;
 		self.renderOrder = renderOrder;
 
 		self.bindMode = bindMode;
