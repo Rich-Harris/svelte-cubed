@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.1.0 (unreleased)
+
+- Rename `Scene` to `Canvas`
+
 ## 0.0.18
 
 - Expose `viewOffset` on `<PerspectiveCamera>`

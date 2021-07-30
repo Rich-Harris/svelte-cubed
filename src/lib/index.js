@@ -1,4 +1,4 @@
-export { default as Scene } from './components/Scene.svelte';
+export { default as Canvas } from './components/Canvas.svelte';
 
 // objects
 export { default as Bone } from './components/objects/Bone.svelte';
