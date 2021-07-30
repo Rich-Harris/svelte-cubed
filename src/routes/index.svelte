@@ -1,19 +1,7 @@
 <script>
 	import * as THREE from 'three';
-	import { Scene, Mesh, PerspectiveCamera, OrthographicCamera, OrbitControls, AmbientLight, PointLight, DirectionalLight, SpotLight, Primitive } from '$lib/index.js';
+	import * as GL from '$lib/index.js';
 	import { onMount } from 'svelte';
-	import { GLTFLoader } from 'three-stdlib';
-
-	// /** @type {THREE.Object3D} */
-	// let object;
-
-	// onMount(() => {
-	// 	const loader = new GLTFLoader();
-
-	// 	loader.load('/glTF-Sample-Models/2.0/Avocado/glTF/Avocado.gltf', gltf => {
-	// 		object = gltf.scene;
-	// 	});
-	// });
 
 	let x = 1;
 	let z = 1;
@@ -39,8 +27,8 @@
 
 <h1>svelte-three</h1>
 
-<Scene background={new THREE.Color(0xffffff)} shadows={THREE.VSMShadowMap}>
-	<Mesh
+<GL.Canvas background={new THREE.Color(0xffffff)} shadows={THREE.VSMShadowMap}>
+	<GL.Mesh
 		geometry={new THREE.PlaneBufferGeometry()}
 		material={new THREE.MeshStandardMaterial({ color: 0xaaaaaa })}
 		receiveShadow
@@ -49,7 +37,7 @@
 		scale={30}
 	/>
 
-	<Mesh
+	<GL.Mesh
 		geometry={new THREE.TorusKnotGeometry(2, 0.8, 128, 32)}
 		material={new THREE.MeshStandardMaterial({ color: 0xff3e00, emissive: 0xff3e00 })}
 		castShadow
@@ -59,22 +47,30 @@
 	/>
 
 	<!-- camera/controls -->
-	<PerspectiveCamera zoom={1} position={[15, 15, 25]} />
+	<GL.PerspectiveCamera zoom={1} position={[15, 15, 25]} />
 	<!-- <OrthographicCamera zoom={1} position={[30, 30, 50]} /> -->
-	<OrbitControls zoomSpeed={1} maxPolarAngle={Math.PI / 2 - 0.1}/>
+	<GL.OrbitControls zoomSpeed={1} maxPolarAngle={Math.PI / 2 - 0.1} />
 
 	<!-- lights -->
-	<AmbientLight color="white" intensity={0.4}/>
-	<SpotLight color="white" intensity={1} angle={0.3} penumbra={0.2} position={[x, 20, z]} shadow={{
-		radius: 20,
-		bias: -0.001,
-		mapSize: [2048, 2048]
-	}}/>
-</Scene>
+	<GL.AmbientLight color="white" intensity={0.4} />
+	<GL.SpotLight
+		color="white"
+		intensity={1}
+		angle={0.3}
+		penumbra={0.2}
+		position={[x, 20, z]}
+		shadow={{
+			radius: 20,
+			bias: -0.001,
+			mapSize: [2048, 2048]
+		}}
+	/>
+</GL.Canvas>
 
 <style>
 	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+			'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 
 	h1 {
