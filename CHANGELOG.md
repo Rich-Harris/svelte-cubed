@@ -1,8 +1,8 @@
 # svelte-three changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0
 
-- Rename `Scene` to `Canvas`
+- **BREAKING** Rename `Scene` to `Canvas`
 - Add `frustumCulled` prop to `<Mesh>` and `<SkinnedMesh>`
 
 ## 0.0.18
