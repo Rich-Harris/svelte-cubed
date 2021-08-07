@@ -65,6 +65,11 @@
 
 	export let pixelRatio = typeof devicePixelRatio !== 'undefined' ? devicePixelRatio : 1;
 
+	// public methods
+	export function info() {
+		return root.renderer.info;
+	}
+
 	/** @type {number} */
 	let _width;
 

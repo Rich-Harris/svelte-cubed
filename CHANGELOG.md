@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.1.2
+
+- Expose `info`
+
 ## 0.1.1
 
 - Try forcing context loss
