@@ -159,6 +159,8 @@
 		resize();
 
 		return () => {
+			console.log('disposing of renderer');
+			root.renderer.forceContextLoss();
 			root.renderer.dispose();
 		};
 	});

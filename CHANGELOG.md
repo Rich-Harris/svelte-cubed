@@ -1,5 +1,9 @@
 # svelte-three changelog
 
+## 0.1.1
+
+- Try forcing context loss
+
 ## 0.1.0
 
 - **BREAKING** Rename `Scene` to `Canvas`
