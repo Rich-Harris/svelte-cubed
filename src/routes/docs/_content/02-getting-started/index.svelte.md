@@ -10,6 +10,7 @@ title: Getting started
 	import CanvasWithBox5 from './examples/CanvasWithBox5.svelte';
 	import CanvasWithBox6 from './examples/CanvasWithBox6.svelte';
 	import CanvasWithBox7 from './examples/CanvasWithBox7.svelte';
+	import CanvasWithBox8 from './examples/CanvasWithBox8.svelte';
 </script>
 
 If you don't have a Svelte project to work on, create a new one with SvelteKit:
@@ -168,8 +169,8 @@ Svelte Cubed provides components corresponding to the various lights in Three.js
 	/>
 	<SC.PerspectiveCamera position={[1, 1, 3]} />
 	<SC.OrbitControls enableZoom={false} />
-+	<SC.AmbientLight intensity={0.4} />
-+	<SC.DirectionalLight intensity={0.6} position={[2, 3, 4]} />
++	<SC.AmbientLight intensity={0.6} />
++	<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 ​</SC.Canvas>
 ```
 
@@ -199,8 +200,8 @@ Svelte Cubed components are just like any other component, which means we can up
 	/>
 	<SC.PerspectiveCamera position={[1, 1, 3]} />
 	<SC.OrbitControls enableZoom={false} />
-	<SC.AmbientLight intensity={0.4} />
-	<SC.DirectionalLight intensity={0.6} position={[2, 3, 4]} />
+	<SC.AmbientLight intensity={0.6} />
+	<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 ​</SC.Canvas>
 
 +<div class="controls">
@@ -245,11 +246,79 @@ Sometimes, though, it's convenient to be able to update state on every frame. Fo
 	/>
 	<SC.PerspectiveCamera position={[1, 1, 3]} />
 	<SC.OrbitControls enableZoom={false} />
-	<SC.AmbientLight intensity={0.4} />
-	<SC.DirectionalLight intensity={0.6} position={[2, 3, 4]} />
+	<SC.AmbientLight intensity={0.6} />
+	<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 ​</SC.Canvas>
 ```
 
 <div class="demo">
 	<CanvasWithBox7/>
+</div>
+
+## Finishing touches
+
+Let's add a few more tweaks. First, let's make the box cast a shadow:
+
+```diff
+​<SC.Mesh
+	geometry={new THREE.BoxGeometry()}
+	material={new THREE.MeshStandardMaterial({ color: 0xff3e00 })}
+	scale={[width, height, depth]}
+	rotation={[0, spin, 0]}
++	castShadow
+/>
+```
+
+Then we'll add an `<SC.Group>` containing a plane to receive the shadow (rotated so that it's horizontal) and a [GridHelper](https://threejs.org/docs/#api/en/helpers/GridHelper). The grid helper is added using the `<SC.Primitive>` component, and positioned `0.01` units above the plane to avoid [z-fighting](https://en.wikipedia.org/wiki/Z-fighting):
+
+```diff
++<SC.Group position={[0, -height / 2, 0]}>
++	<SC.Mesh
++		geometry={new THREE.PlaneGeometry(50, 50)}
++		material={new THREE.MeshStandardMaterial({ color: 'burlywood' })}
++		rotation={[-Math.PI / 2, 0, 0]}
++		receiveShadow
++	/>
++
++	<SC.Primitive
++		object={new THREE.GridHelper(50, 50, 0x444444, 0x555555)}
++		position={[0, 0.01, 0]}
++	/>
++</SC.Group>
+```
+
+Before the shadows will work, we need to enable them at the canvas level...
+
+```diff
+-<SC.Canvas antialias background={new THREE.Color('papayawhip')}>
++<SC.Canvas antialias background={new THREE.Color('papayawhip')} shadows>
+```
+
+...and on the light source (specifying a larger-than-default `mapSize` to avoid blurriness):
+
+```diff
+-<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
++<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
+```
+
+Add a `maxPolarAngle` so the camera can't dip below the floor:
+
+```diff
+-<SC.OrbitControls enableZoom={false} />
++<SC.OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.51} />
+```
+
+Finally, add a `fog` property to the canvas:
+
+```diff
+​<SC.Canvas
+	antialias
+	background={new THREE.Color('papayawhip')}
++	fog={new THREE.FogExp2('papayawhip', 0.1)}
+	shadows
+>
+```
+
+<div class="demo">
+	<CanvasWithBox8/>
 </div>
