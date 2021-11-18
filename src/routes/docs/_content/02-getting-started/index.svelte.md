@@ -271,7 +271,7 @@ Let's add a few more tweaks. First, let's make the box cast a shadow:
 />
 ```
 
-Then we'll add an `<SC.Group>` containing a plane to receive the shadow (rotated so that it's horizontal) and a [GridHelper](https://threejs.org/docs/#api/en/helpers/GridHelper). The grid helper is added using the `<SC.Primitive>` component, and positioned `0.01` units above the plane to avoid [z-fighting](https://en.wikipedia.org/wiki/Z-fighting):
+Then we'll add an `<SC.Group>` containing a plane to receive the shadow (rotated so that it's horizontal) and a [GridHelper](https://threejs.org/docs/#api/en/helpers/GridHelper). The grid helper is added using the `<SC.Primitive>` component, and positioned `0.001` units above the plane to avoid [z-fighting](https://en.wikipedia.org/wiki/Z-fighting):
 
 ```diff
 +<SC.Group position={[0, -height / 2, 0]}>
@@ -284,7 +284,7 @@ Then we'll add an `<SC.Group>` containing a plane to receive the shadow (rotated
 +
 +	<SC.Primitive
 +		object={new THREE.GridHelper(50, 50, 0x444444, 0x555555)}
-+		position={[0, 0.01, 0]}
++		position={[0, 0.001, 0]}
 +	/>
 +</SC.Group>
 ```

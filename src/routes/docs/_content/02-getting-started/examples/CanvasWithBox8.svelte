@@ -28,7 +28,7 @@
 		/>
 		<SC.Primitive
 			object={new THREE.GridHelper(50, 50, 'papayawhip', 'papayawhip')}
-			position={[0, 0.01, 0]}
+			position={[0, 0.001, 0]}
 		/>
 	</SC.Group>
 
