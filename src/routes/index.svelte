@@ -1,80 +1,68 @@
 <script>
-	import * as THREE from 'three';
-	import * as GL from '$lib/index.js';
-	import { onMount } from 'svelte';
-
-	let x = 1;
-	let z = 1;
-
-	onMount(() => {
-		/** @type {number} */
-		let frame;
-
-		function loop() {
-			frame = requestAnimationFrame(loop);
-
-			x = 20 * Math.sin(Date.now() / 1000);
-			z = 20 * Math.cos(Date.now() / 1000);
-		}
-
-		loop();
-
-		return () => {
-			cancelAnimationFrame(frame);
-		};
-	});
+	import { Blurb } from '@sveltejs/site-kit';
+	import Hero from '$lib/site/Hero.svelte';
 </script>
 
-<h1>svelte-cubed</h1>
+<main>
+	<h1 class="visually-hidden">Svelte Cubed</h1>
 
-<GL.Canvas background={new THREE.Color(0xffffff)} shadows={THREE.VSMShadowMap}>
-	<GL.Mesh
-		geometry={new THREE.PlaneBufferGeometry()}
-		material={new THREE.MeshStandardMaterial({ color: 0xaaaaaa })}
-		receiveShadow
-		position={[0, 0, 0]}
-		rotation={[-Math.PI / 2, 0, 0]}
-		scale={30}
-	/>
+	<Hero />
 
-	<GL.Mesh
-		geometry={new THREE.TorusKnotGeometry(2, 0.8, 128, 32)}
-		material={new THREE.MeshStandardMaterial({ color: 0xff3e00, emissive: 0xff3e00 })}
-		castShadow
-		position={[0, 4, 0]}
-		rotation={[0, 0, 0]}
-		scale={1}
-	/>
+	<Blurb>
+		<div slot="one">
+			<h2>The power of Three.js</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
+				eligendi sed amet laborum vel natus quae sint.
+			</p>
 
-	<!-- camera/controls -->
-	<GL.PerspectiveCamera zoom={1} position={[15, 15, 25]} />
-	<!-- <OrthographicCamera zoom={1} position={[30, 30, 50]} /> -->
-	<GL.OrbitControls zoomSpeed={1} maxPolarAngle={Math.PI / 2 - 0.1} />
+			<a href="https://threejs.org">learn Three.js</a>
+		</div>
 
-	<!-- lights -->
-	<GL.AmbientLight color="white" intensity={0.4} />
-	<GL.SpotLight
-		color="white"
-		intensity={1}
-		angle={0.3}
-		penumbra={0.2}
-		position={[x, 20, z]}
-		shadow={{
-			radius: 20,
-			bias: -0.001,
-			mapSize: [2048, 2048]
-		}}
-	/>
-</GL.Canvas>
+		<div slot="two">
+			<h2>The zen of Svelte</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
+				eligendi sed amet laborum vel natus quae sint.
+			</p>
+
+			<a href="https://svelte.dev">learn Svelte</a>
+		</div>
+
+		<div slot="three">
+			<h2>TODO</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
+				eligendi sed amet laborum vel natus quae sint.
+			</p>
+
+			<a sveltekit:prefetch href="/docs">read the docs</a>
+		</div>
+
+		<div class="description" slot="what">
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
+				eligendi sed amet laborum vel natus quae sint.
+			</p>
+
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ad eligendi veritatis
+				perspiciatis iure ducimus quia omnis temporibus veniam ut, fugiat at tempore incidunt minus
+				vero molestiae quae odio maxime?
+			</p>
+
+			<p>
+				Read the <a href="https://svelte.dev/blog/introducing-svelte-cubed">introductory blog</a>
+				post to learn more.
+			</p>
+		</div>
+
+		<div slot="how">
+			<pre><code>npm install svelte-cubed</code></pre>
+			<a sveltekit:prefetch href="/docs">get started</a>
+		</div>
+	</Blurb>
+</main>
 
 <style>
-	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-			'Open Sans', 'Helvetica Neue', sans-serif;
-	}
-
-	h1 {
-		position: relative;
-		z-index: 2;
-	}
 </style>

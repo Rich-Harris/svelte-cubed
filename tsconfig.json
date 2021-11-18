@@ -3,11 +3,14 @@
 		"allowJs": true,
 		"checkJs": true,
 		"module": "ESNext",
+		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"baseUrl": ".",
 		"paths": {
 			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
+			"$lib/*": ["src/lib/*"],
+			"svelte-cubed": ["src/lib"],
+			"svelte-cubed/*": ["src/lib/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.svelte"]

@@ -1,0 +1,9 @@
+.demo {
+	position: relative;
+	width: 100%;
+	max-width: var(--linemax);
+	height: var(--height, 300px);
+	border-radius: 0.5rem;
+	overflow: hidden;
+	margin: 0 0 1em 0;
+}
