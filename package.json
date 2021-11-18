@@ -13,6 +13,7 @@
 		"release": "npm run package && npm publish package"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-vercel": "^1.0.0-next.31",
 		"@sveltejs/kit": "^1.0.0-next.196",
 		"@types/node": "^16.11.7",
 		"@types/three": "^0.134.0",

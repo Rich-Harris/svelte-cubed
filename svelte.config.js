@@ -1,4 +1,5 @@
 import path from 'path';
+import adapter from '@sveltejs/adapter-vercel';
 import { preprocess } from './utils/preprocess.js';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -8,14 +9,12 @@ const config = {
 	preprocess,
 
 	kit: {
+		adapter: adapter(),
+
 		target: '#svelte',
 
 		package: {
-			files: (id) => console.log({ id })
-
-			// {
-			// 	exclude: ['site/**']
-			// }
+			files: (id) => !id.startsWith('site/')
 		},
 
 		vite: {
