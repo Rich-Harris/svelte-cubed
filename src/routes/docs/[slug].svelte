@@ -31,6 +31,10 @@
 	export let module;
 </script>
 
+<svelte:head>
+	<title>{module.metadata.title} • Svelte Cubed documentation</title>
+</svelte:head>
+
 <h1>
 	{module.metadata.title}
 

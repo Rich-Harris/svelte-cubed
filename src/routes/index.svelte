@@ -3,6 +3,10 @@
 	import Hero from '$lib/site/Hero.svelte';
 </script>
 
+<svelte:head>
+	<title>Svelte Cubed</title>
+</svelte:head>
+
 <main>
 	<h1 class="visually-hidden">Svelte Cubed</h1>
 
