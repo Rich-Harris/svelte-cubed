@@ -38,23 +38,22 @@ export function get() {
 				const pattern = /^##(#)? *(.+)/gm;
 				while ((match = pattern.exec(content))) {
 					const title = match[2].trim();
-					const slug = slugify(title);
 
 					if (match[1]) {
 						// subsection
 						if (!current) throw new Error(`encountered h3 before h2`);
 						current.sections.push({
 							title,
-							path: `${path}#${current_slug}-${slug}`
+							path: `${path}#${slugify(`${current_slug}-${title}`)}`
 						});
 					} else {
+						current_slug = slugify(title);
+
 						current = {
 							title,
-							path: `${path}#${slug}`,
+							path: `${path}#${current_slug}`,
 							sections: []
 						};
-
-						current_slug = slug;
 
 						sections.push(current);
 					}

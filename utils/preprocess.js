@@ -16,14 +16,12 @@ function add_ids() {
 			const rank = headingRank(node);
 
 			if (rank === 2 || rank === 3) {
-				const slug = slugify(node.children[0].value);
-
 				if (rank === 2) {
-					current_section = slug;
+					current_section = slugify(node.children[0].value);
 					node.properties.id = current_section;
 				} else if (rank === 3) {
 					if (!current_section) throw new Error(`encountered h3 before h2`);
-					node.properties.id = `${current_section}-${slug}`;
+					node.properties.id = slugify(`${current_section}-${node.children[0].value}`);
 				}
 			}
 		});
