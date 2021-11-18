@@ -25,7 +25,7 @@
 	});
 </script>
 
-<h1>svelte-three</h1>
+<h1>svelte-cubed</h1>
 
 <GL.Canvas background={new THREE.Color(0xffffff)}>
 	<!-- <Mesh

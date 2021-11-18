@@ -1,21 +1,43 @@
+import path from 'path';
+import { preprocess } from './utils/preprocess.js';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	extensions: ['.svelte', '.svelte.md'],
+
+	preprocess,
+
 	kit: {
 		target: '#svelte',
 
 		package: {
-			exports: {
-				// include: ['**/*.svelte']
-			}
+			files: (id) => console.log({ id })
+
+			// {
+			// 	exclude: ['site/**']
+			// }
 		},
 
 		vite: {
+			resolve: {
+				alias: {
+					'svelte-cubed': path.resolve('src/lib')
+				}
+			},
 			optimizeDeps: {
-				include: ['svelte-knobby'],
+				include: ['svelte-knobby', '@sveltejs/site-kit'],
 				exclude: ['three']
 			},
 			ssr: {
-				noExternal: ['three', 'svelte-knobby']
+				noExternal: ['three', 'svelte-knobby', '@sveltejs/site-kit']
+			},
+			server: {
+				fs: {
+					allow: [
+						// TODO temporary, so that we can link this package
+						path.resolve('../../sites/packages/site-kit')
+					]
+				}
 			}
 		}
 	}

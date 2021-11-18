@@ -1,4 +1,4 @@
-# svelte-three changelog
+# svelte-cubed changelog
 
 ## 0.1.2
 

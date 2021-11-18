@@ -1,4 +1,4 @@
-# svelte-three
+# svelte-cubed
 
 A Three.js component library for Svelte.
 

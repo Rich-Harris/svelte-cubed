@@ -14,7 +14,7 @@
 	let background;
 
 	const options = knobby.panel({
-		text: 'hello svelte-three',
+		text: 'hello svelte-cubed',
 		lights: {
 			hemisphere: {
 				intensity: { value: 1, min: 0, max: 1, step: 0.01 },
@@ -33,7 +33,7 @@
 		text = new THREE.TextGeometry($options.text, {
 			font,
 			size: 2,
-			height: 0.1,
+			height: 0.2,
 			curveSegments: 12
 		});
 
@@ -45,7 +45,7 @@
 		{
 			const loader = new THREE.FontLoader();
 
-			loader.load('/fonts/droid/droid_sans_regular.typeface.json', (loaded) => {
+			loader.load('/fonts/overpass.json', (loaded) => {
 				font = loaded;
 			});
 		}
@@ -60,10 +60,10 @@
 	});
 </script>
 
-<GL.Canvas {background} fog={new THREE.FogExp2(0x000000, 0.02)} shadows antialias>
+<GL.Canvas {background} fog={new THREE.FogExp2(0xffffff, 0.02)} shadows antialias>
 	<GL.Mesh
 		geometry={new THREE.PlaneGeometry(10000, 10000)}
-		material={new THREE.MeshStandardMaterial({ color: 0xaaaadd })}
+		material={new THREE.MeshStandardMaterial({ color: 0xffffff })}
 		rotation={[-Math.PI * 0.5, 0, 0]}
 		position={[0, -0.02, 0]}
 		receiveShadow
