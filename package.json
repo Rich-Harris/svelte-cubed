@@ -40,7 +40,6 @@
 	},
 	"dependencies": {
 		"hast-util-heading-rank": "^2.1.0",
-		"hast-util-to-string": "^2.0.0",
 		"unist-util-visit": "^4.1.0"
 	}
 }

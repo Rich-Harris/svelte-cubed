@@ -1,6 +1,5 @@
 import { mdsvex } from 'mdsvex';
 import { headingRank } from 'hast-util-heading-rank';
-import { toString } from 'hast-util-to-string';
 import { visit } from 'unist-util-visit';
 import { make_session_slug_processor } from '@sveltejs/site-kit/utils/slug.js';
 
@@ -17,7 +16,7 @@ function add_ids() {
 			const rank = headingRank(node);
 
 			if (rank === 2 || rank === 3) {
-				const slug = slugify(toString(node));
+				const slug = slugify(node.children[0].value);
 
 				if (rank === 2) {
 					current_section = slug;
@@ -31,7 +30,19 @@ function add_ids() {
 	};
 }
 
+function escape_headings() {
+	return (tree) => {
+		visit(tree, 'element', (node) => {
+			const rank = headingRank(node);
+
+			if (rank === 2 || rank === 3) {
+				node.children[0].value = node.children[0].value.replace('<', '&lt;').replace('>', '&gt;');
+			}
+		});
+	};
+}
+
 export const preprocess = mdsvex({
 	extensions: ['.svelte.md'],
-	rehypePlugins: [add_ids]
+	rehypePlugins: [add_ids, escape_headings]
 });

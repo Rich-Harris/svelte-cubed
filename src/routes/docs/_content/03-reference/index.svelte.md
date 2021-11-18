@@ -4,33 +4,46 @@ title: Reference
 
 ## Types
 
-TODO
+TypeScript users should install `@types/three` in order to get typechecking and autocompletion for Three.js code.
 
-## Components
+Svelte Cubed defines a handful of additional types to make it easier to work with components that use [Vector3](https://threejs.org/docs/#api/en/math/Vector3) and [Euler](https://threejs.org/docs/#api/en/math/Euler) classes:
 
-TODO
+```typescript
+type Position = [number, number, number];
 
-### Objects
+type Scale = number | [number, number, number];
 
-TODO
+type EulerOrder = 'XYZ' | 'XZY' | 'YXZ' | 'YZX' | 'ZXY' | 'ZYX';
+type Rotation = [number, number, number, EulerOrder?];
+```
 
-### Lights
+Type information for Svelte Cubed components and functions are detailed below.
 
-TODO
+## <Canvas>
 
-### Cameras
+## Objects
 
-TODO
-
-### Controls
-
-TODO
-
-### Helpers
+### <Mesh>
 
 TODO
 
-### Animation
+## Lights
+
+TODO
+
+## Cameras
+
+TODO
+
+## Controls
+
+TODO
+
+## Helpers
+
+TODO
+
+## Animation
 
 TODO
 

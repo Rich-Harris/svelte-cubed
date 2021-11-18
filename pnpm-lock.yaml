@@ -7,14 +7,13 @@ overrides:
 specifiers:
   '@sveltejs/adapter-static': ^1.0.0-next.21
   '@sveltejs/kit': link:../../KIT/kit/packages/kit
-  '@sveltejs/site-kit': ^2.0.0-next.5
+  '@sveltejs/site-kit': link:../../sites/packages/site-kit
   '@types/node': ^16.11.7
   '@types/three': ^0.134.0
   eslint: ^7.30.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.2.0
   hast-util-heading-rank: ^2.1.0
-  hast-util-to-string: ^2.0.0
   mdsvex: ^0.9.8
   prettier: ~2.3.2
   prettier-plugin-svelte: ^2.3.1
@@ -28,13 +27,12 @@ specifiers:
 
 dependencies:
   hast-util-heading-rank: 2.1.0
-  hast-util-to-string: 2.0.0
   unist-util-visit: 4.1.0
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.21
   '@sveltejs/kit': link:../../KIT/kit/packages/kit
-  '@sveltejs/site-kit': 2.0.0-next.5
+  '@sveltejs/site-kit': link:../../sites/packages/site-kit
   '@types/node': 16.11.7
   '@types/three': 0.134.0
   eslint: 7.32.0
@@ -196,12 +194,6 @@ packages:
 
   /@sveltejs/adapter-static/1.0.0-next.21:
     resolution: {integrity: sha512-B4+QoUVAaANKx+mHntG8SqF45zbj3Ct4Akg/cGauo6COyfKZRhO5OsMa+wPuT2TKJBZC4eEDK0p+p9nyQBkxKQ==}
-    dev: true
-
-  /@sveltejs/site-kit/2.0.0-next.5:
-    resolution: {integrity: sha512-o5TPoeCsRly86ByHh7Tql8c5cwWCDz6lQWYGWgkGgjC/wxWb461yV4iI3RZfrTdWXRqsVokcChMWWS3DrBhK+g==}
-    dependencies:
-      golden-fleece: 1.0.9
     dev: true
 
   /@types/hast/2.3.4:
@@ -692,10 +684,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /golden-fleece/1.0.9:
-    resolution: {integrity: sha512-YSwLaGMOgSBx9roJlNLL12c+FRiw7VECphinc6mGucphc/ZxTHgdEz6gmJqH6NOzYEd/yr64hwjom5pZ+tJVpg==}
-    dev: true
-
   /graceful-fs/4.2.8:
     resolution: {integrity: sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==}
     dev: true
@@ -712,12 +700,6 @@ packages:
 
   /hast-util-heading-rank/2.1.0:
     resolution: {integrity: sha512-w+Rw20Q/iWp2Bcnr6uTrYU6/ftZLbHKhvc8nM26VIWpDqDMlku2iXUVTeOlsdoih/UKQhY7PHQ+vZ0Aqq8bxtQ==}
-    dependencies:
-      '@types/hast': 2.3.4
-    dev: false
-
-  /hast-util-to-string/2.0.0:
-    resolution: {integrity: sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==}
     dependencies:
       '@types/hast': 2.3.4
     dev: false
