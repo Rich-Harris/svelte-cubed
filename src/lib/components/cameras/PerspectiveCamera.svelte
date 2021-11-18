@@ -3,7 +3,7 @@
 	import { PerspectiveCamera, Vector3 } from 'three';
 
 	export let fov = 45;
-	export let near = 1;
+	export let near = 0.1;
 	export let far = 2000;
 	export let zoom = 1;
 

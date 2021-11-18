@@ -34,8 +34,8 @@
 	export let touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
 	export let zoomSpeed = 1;
 
-	/** @type {import('../../types').Position} */
-	export let target;
+	/** @type {import('../../types/common').Position} */
+	export let target = [0, 0, 0];
 
 	const { root } = setup();
 	const dispatch = createEventDispatcher();
