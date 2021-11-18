@@ -10,7 +10,7 @@
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write --plugin-search-dir=. .",
 		"postversion": "git push && git push --tags && npm run release",
-		"release": "npm run package && npm publish package"
+		"release": "npm run package && cd package && npm publish"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.21",
