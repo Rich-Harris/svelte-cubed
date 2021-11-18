@@ -2,14 +2,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { make_session_slug_processor } from '@sveltejs/site-kit/utils/slug.js';
 
-export function get() {
-	const dir = new URL('./_content', import.meta.url);
+const dir = 'src/routes/docs/_content';
 
+export function get() {
 	return {
 		body: fs
 			.readdirSync(dir)
 			.map((key) => {
-				const filename = `${dir.pathname}/${key}/index.svelte.md`;
+				const filename = `${dir}/${key}/index.svelte.md`;
 				if (!fs.existsSync(filename)) return null;
 
 				let match = /---\n([\s\S]+?)\n---\n([\s\S]+)/.exec(fs.readFileSync(filename, 'utf-8'));

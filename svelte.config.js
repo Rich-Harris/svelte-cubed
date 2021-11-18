@@ -1,5 +1,5 @@
 import path from 'path';
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-static';
 import { preprocess } from './utils/preprocess.js';
 
 /** @type {import('@sveltejs/kit').Config} */
