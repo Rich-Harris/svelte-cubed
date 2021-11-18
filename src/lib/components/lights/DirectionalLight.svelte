@@ -6,10 +6,10 @@
 	export let color = 0xffffff;
 	export let intensity = 1;
 
-	/** @type {import('../../types').Position} */
+	/** @type {import('../../types/common').Position} */
 	export let position = [0, 1, 0];
 
-	/** @type {import('../../types').Position} */
+	/** @type {import('../../types/common').Position} */
 	export let target = [0, 0, 0];
 
 	/**
@@ -40,7 +40,7 @@
 				mapSize = [512, 512],
 				camera: { left = -5, bottom = -5, right = 5, top = 5, near = 0.5, far = 500 } = {},
 				bias = 0,
-				radius = 1,
+				radius = 1
 			} = shadow === true ? {} : shadow;
 
 			self.shadow.mapSize.set(mapSize[0], mapSize[1]);

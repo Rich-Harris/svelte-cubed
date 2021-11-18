@@ -1,8 +1,8 @@
 /**
  * @param {import('three').Object3D} object
- * @param {import('../types').Position} position
- * @param {import('../types').Rotation} rotation
- * @param {import('../types').Scale} scale
+ * @param {import('../types/common').Position} position
+ * @param {import('../types/common').Rotation} rotation
+ * @param {import('../types/common').Scale} scale
  */
 export function transform(object, position, rotation, scale) {
 	object.position.set(position[0], position[1], position[2]);

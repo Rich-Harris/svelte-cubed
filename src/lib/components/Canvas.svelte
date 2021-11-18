@@ -5,7 +5,7 @@
 
 	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */
 
-	/** @type {any} */
+	/** @type {THREE.Color | THREE.Texture} */
 	export let background = null;
 
 	/** @type {THREE.Texture} */

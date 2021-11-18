@@ -8,7 +8,7 @@
 	export let distance = 100;
 	export let decay = 1;
 
-	/** @type {import('../../types').Position} */
+	/** @type {import('../../types/common').Position} */
 	export let position = [0, 0, 0];
 
 	/**
@@ -40,7 +40,7 @@
 				mapSize = [512, 512],
 				camera: { near = 0.5, far = 500 } = {},
 				bias = 0,
-				radius = 1,
+				radius = 1
 			} = shadow === true ? {} : shadow;
 
 			self.shadow.mapSize.set(mapSize[0], mapSize[1]);
