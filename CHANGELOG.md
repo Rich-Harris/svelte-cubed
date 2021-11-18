@@ -1,5 +1,9 @@
 # svelte-cubed changelog
 
+## 0.2.0
+
+- Rename from `svelte-three` to `svelte-cubed`
+
 ## 0.1.2
 
 - Expose `info`

@@ -2,14 +2,8 @@
 
 A Three.js component library for Svelte.
 
-## Comparison with Svelte GL
+https://svelte-cubed.vercel.app
 
-TODO
+## License
 
-## Comparison with Svelthree
-
-TODO
-
-## Comparison with react-three-fiber
-
-TODO
+[MIT](LICENSE)
