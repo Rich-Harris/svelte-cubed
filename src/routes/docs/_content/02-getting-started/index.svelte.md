@@ -47,22 +47,8 @@ Now you're ready to start building 3D graphics (in your project's `src/routes/in
 	<EmptyCanvas/>
 </div>
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
+Let's break this down.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
+First, we're importing `THREE` and `SC` from `three` and `svelte-cubed` respectively. In general, Svelte Cubed doesn't _wrap_ the underlying Three.js objects, it simply gives you a place to _put_ them, so whenever you're creating things like geometry or materials you will need to import `three`.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae voluptas hic maxime velit iusto tempore unde non. Voluptates quis itaque aut, fugiat amet nihil accusantium! Itaque et magnam sequi.
+The `<SC.Canvas>` component creates a [WebGLRenderer](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) and a [Scene](https://threejs.org/docs/#api/en/scenes/Scene).

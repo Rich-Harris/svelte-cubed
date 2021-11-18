@@ -7,7 +7,7 @@ overrides:
 specifiers:
   '@sveltejs/adapter-vercel': ^1.0.0-next.31
   '@sveltejs/kit': link:../../KIT/kit/packages/kit
-  '@sveltejs/site-kit': link:../../sites/packages/site-kit
+  '@sveltejs/site-kit': ^2.0.0-next.3
   '@types/node': ^16.11.7
   '@types/three': ^0.134.0
   eslint: ^7.30.0
@@ -27,7 +27,7 @@ specifiers:
   unist-util-visit: ^4.1.0
 
 dependencies:
-  '@sveltejs/site-kit': link:../../sites/packages/site-kit
+  '@sveltejs/site-kit': 2.0.0-next.3
   hast-util-heading-rank: 2.1.0
   hast-util-to-string: 2.0.0
   unist-util-visit: 4.1.0
@@ -199,6 +199,12 @@ packages:
     dependencies:
       esbuild: 0.13.14
     dev: true
+
+  /@sveltejs/site-kit/2.0.0-next.3:
+    resolution: {integrity: sha512-lm19MN5nUFy2z5nCBx4BxM8xheGBtX0c/JG/h0HDpPVM/f310BgGEawQDUZan0aek9Z3pMv2+iQOJDkMT2/K6g==}
+    dependencies:
+      golden-fleece: 1.0.9
+    dev: false
 
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -830,6 +836,10 @@ packages:
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
+
+  /golden-fleece/1.0.9:
+    resolution: {integrity: sha512-YSwLaGMOgSBx9roJlNLL12c+FRiw7VECphinc6mGucphc/ZxTHgdEz6gmJqH6NOzYEd/yr64hwjom5pZ+tJVpg==}
+    dev: false
 
   /graceful-fs/4.2.8:
     resolution: {integrity: sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==}
