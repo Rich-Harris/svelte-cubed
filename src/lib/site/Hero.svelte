@@ -3,53 +3,36 @@
 	import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 	import * as SC from '$lib/index.js';
 	import { onMount } from 'svelte';
-	import { vfov } from '$lib/site/fov';
 	import { opts } from '$lib/site/opts.js';
-	import { range } from '$lib/site/utils.js';
+	import logo from './svelte-logo.svg';
 
 	let w = 1;
 	let h = 1;
 	let y = 0;
 
-	/** @type {import('three').Font} */
-	let font;
+	let loaded = false;
 
-	/** @type {THREE.BufferGeometry[]} */
-	let text;
+	let spot = [3, 1, 5];
 
-	const materials = {
-		light: new THREE.MeshStandardMaterial({
-			color: 0,
-			emissive: 0xf0f0f0
-		}),
-		dark: new THREE.MeshStandardMaterial({
-			color: 0,
-			emissive: 0x676778
-		})
-	};
+	const backdrop = new THREE.PlaneGeometry(1, 1, 32, 32);
 
-	$: if (font) {
-		text = [
-			new THREE.TextGeometry('SVELTE', {
-				font,
-				size: 1,
-				height: 0,
-				curveSegments: 12
-			}),
-			new THREE.TextGeometry('CUBED', {
-				font,
-				size: 1,
-				height: 0,
-				curveSegments: 12
-			})
-		];
+	console.log(backdrop);
 
-		text[0].computeBoundingBox();
-		text[0].center();
+	// curve backdrop
+	for (let i = 0; i < backdrop.attributes.position.array.length; i += 3) {
+		const x = backdrop.attributes.position.array[i + 0];
+		const y = backdrop.attributes.position.array[i + 1];
+		const z = backdrop.attributes.position.array[i + 2];
 
-		text[1].computeBoundingBox();
-		text[1].center();
+		backdrop.attributes.position.array[i + 0] = Math.sin(x);
+		backdrop.attributes.position.array[i + 2] = -Math.cos(x) + 1;
+
+		backdrop.attributes.normal.array[i + 0] = -Math.sin(x);
+		backdrop.attributes.normal.array[i + 2] = Math.cos(x);
 	}
+
+	backdrop.attributes.position.needsUpdate = true;
+	backdrop.attributes.normal.needsUpdate = true;
 
 	/** @type {import('three').Shape[]}*/
 	let shapes;
@@ -63,15 +46,7 @@
 	}
 
 	onMount(() => {
-		const fontloader = new THREE.FontLoader();
-
-		fontloader.load('/fonts/overpass.json', (loaded) => {
-			font = loaded;
-		});
-
-		const svgloader = new SVGLoader();
-
-		svgloader.load('/svelte-logo.svg', (loaded) => {
+		new SVGLoader().load('/svelte-logo.svg', (loaded) => {
 			shapes = loaded.paths[0].toShapes(false);
 		});
 	});
@@ -83,45 +58,44 @@
 	});
 </script>
 
-<svelte:window bind:scrollY={y} bind:innerWidth={w} bind:innerHeight={h} />
+<svelte:window
+	bind:scrollY={y}
+	bind:innerWidth={w}
+	bind:innerHeight={h}
+	on:mousemove={(e) => {
+		spot = [
+			-3 * (e.clientX / window.innerWidth - 0.5),
+			5 * (e.clientY / window.innerHeight - 0.5),
+			5
+		];
+	}}
+/>
 
-<div class="hero" class:visible={font && geometry}>
+<div class="hero" class:visible={geometry && loaded}>
 	<SC.Canvas background={new THREE.Color(0xffffff)} shadows={THREE.VSMShadowMap} antialias>
-		{#if geometry}
-			<SC.Mesh
-				{geometry}
-				material={new THREE.MeshPhysicalMaterial($opts.glass)}
-				position={[0, 0.4, 0]}
-				rotation={[0, r, 0]}
-				scale={0.03}
-			/>
-		{/if}
+		<SC.Mesh
+			geometry={backdrop}
+			material={new THREE.MeshStandardMaterial({
+				color: 'white',
+				map: new THREE.TextureLoader().load('/images/example-code-2.png', () => {
+					loaded = true;
+				})
+			})}
+			position={[0, 0, -15]}
+			scale={35}
+		/>
 
-		{#if text}
-			{#each range(-50, 10, 1) as y}
-				<SC.Group position={[0, (y + 0.5) * 1.2, 0]}>
-					<SC.Mesh
-						geometry={text[0]}
-						material={y === 0 ? materials.dark : materials.light}
-						rotation={[0, 0, 0]}
-						position={[-0.8, 0, -2.5]}
-						castShadow
-					/>
-
-					<SC.Mesh
-						geometry={text[1]}
-						material={y === 0 ? materials.dark : materials.light}
-						rotation={[0, -Math.PI / 2, 0]}
-						position={[+1.7, 0, 0]}
-						castShadow
-					/>
-				</SC.Group>
-			{/each}
-		{/if}
+		<SC.Mesh
+			{geometry}
+			material={new THREE.MeshPhysicalMaterial($opts.glass)}
+			position={[0, 0.4, 0]}
+			rotation={[0, r, 0]}
+			scale={0.03}
+		/>0
 
 		<!-- camera/controls -->
 		<SC.PerspectiveCamera
-			fov={vfov(65, w / h)}
+			fov={65}
 			zoom={1}
 			position={[0, 0 - y * 0.005, 7]}
 			target={[0, 0 - y * 0.005, 0]}
@@ -137,11 +111,7 @@
 			intensity={$opts.lights.spot.intensity}
 			angle={$opts.lights.spot.angle}
 			penumbra={$opts.lights.spot.penumbra}
-			position={[
-				$opts.lights.spot.position.x,
-				$opts.lights.spot.position.y,
-				$opts.lights.spot.position.z
-			]}
+			position={spot}
 			shadow={{
 				radius: 20,
 				bias: -0.001,
@@ -171,7 +141,6 @@
 		height: 20%;
 		left: 0;
 		bottom: 0;
-		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
 	}
 
 	.visible {

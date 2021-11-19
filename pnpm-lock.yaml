@@ -26,10 +26,12 @@ specifiers:
   tiny-glob: ^0.2.9
   typescript: ^4.3.5
   unist-util-visit: ^4.1.0
+  yootils: ^0.3.1
 
 dependencies:
   hast-util-heading-rank: 2.1.0
   unist-util-visit: 4.1.0
+  yootils: 0.3.1
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.21
@@ -1343,4 +1345,3 @@ packages:
 
   /yootils/0.3.1:
     resolution: {integrity: sha512-A7AMeJfGefk317I/3tBoUYRcDcNavKEkpiPN/nQsBz/viI2GvT7BtrqdPD6rGqBFN8Ax7v4obf+Cl32JF9DDVw==}
-    dev: true

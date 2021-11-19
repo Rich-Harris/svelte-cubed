@@ -9,13 +9,8 @@ export const opts = knobby.panel({
 		spot: {
 			color: '#ffffff',
 			intensity: 1,
-			angle: 0.3,
-			penumbra: 0.2,
-			position: {
-				x: 5,
-				y: 1,
-				z: 5
-			}
+			angle: 0.8,
+			penumbra: 0.5
 		}
 	},
 	glass: {
