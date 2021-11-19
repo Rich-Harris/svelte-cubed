@@ -3,7 +3,7 @@
 	export function load() {
 		return {
 			status: 308,
-			redirect: '/docs/getting-started'
+			redirect: '/docs/introduction'
 		};
 	}
 </script>

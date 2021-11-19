@@ -14,9 +14,9 @@
 	<PreloadingIndicator />
 {/if}
 
-<Nav {segment} {page} logo="/images/svelte-kit-horizontal.svg">
+<Nav {segment} {page} logo="/images/svelte-cubed-horizontal.svg">
 	<svelte:fragment slot="nav-center">
-		<NavItem segment="/docs/getting-started">Docs</NavItem>
+		<NavItem segment="/docs/introduction">Docs</NavItem>
 		<NavItem segment="/examples">Examples</NavItem>
 	</svelte:fragment>
 
@@ -25,7 +25,7 @@
 			<img width="20px" src="/icons/discord.svg" alt="Open Discord chat" />
 		</NavItem> -->
 
-		<NavItem external="https://github.com/sveltejs/kit" title="GitHub Repo">
+		<NavItem external="https://github.com/rich-harris/svelte-cubed" title="GitHub Repo">
 			<img width="20px" src={icon_github} alt="Open Svelte GitHub page" />
 		</NavItem>
 
