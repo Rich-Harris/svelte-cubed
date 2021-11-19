@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.21",
 		"@sveltejs/kit": "^1.0.0-next.196",
-		"@sveltejs/site-kit": "^2.0.0-next.5",
+		"@sveltejs/site-kit": "^2.0.0-next.6",
 		"@types/node": "^16.11.7",
 		"@types/three": "^0.134.0",
 		"eslint": "^7.30.0",
