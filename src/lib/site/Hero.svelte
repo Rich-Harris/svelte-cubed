@@ -54,7 +54,7 @@
 	let r = Math.PI / 4;
 
 	SC.onFrame(() => {
-		r -= 0.01;
+		r -= 0.005;
 	});
 </script>
 
@@ -73,6 +73,7 @@
 
 <div class="hero" class:visible={geometry && loaded}>
 	<SC.Canvas background={new THREE.Color(0xffffff)} shadows={THREE.VSMShadowMap} antialias>
+		<!-- code sample backdrop -->
 		<SC.Mesh
 			geometry={backdrop}
 			material={new THREE.MeshStandardMaterial({
@@ -83,15 +84,36 @@
 			})}
 			position={[0, 0, -15]}
 			scale={35}
+			receiveShadow
 		/>
 
-		<SC.Mesh
+		<!-- spinning logo -->
+		<!-- <SC.Mesh
 			{geometry}
-			material={new THREE.MeshPhysicalMaterial($opts.glass)}
+			material={new THREE.MeshPhysicalMaterial({
+				...$opts.glass,
+				envMap: new THREE.TextureLoader().load('/textures/empty_warehouse_01.jpeg')
+			})}
 			position={[0, 0.4, 0]}
 			rotation={[0, r, 0]}
 			scale={0.03}
-		/>0
+		/> -->
+
+		<SC.Mesh
+			{geometry}
+			material={new THREE.MeshLambertMaterial({
+				envMap: new THREE.TextureLoader().load('/textures/studio_small_09_1024.jpeg', (texture) => {
+					texture.mapping = THREE.EquirectangularReflectionMapping;
+					texture.encoding = THREE.sRGBEncoding;
+				}),
+				reflectivity: 0.4,
+				color: 0xff3e00
+			})}
+			position={[0, 0.4, 0]}
+			rotation={[0, r, 0]}
+			scale={0.03}
+			castShadow
+		/>
 
 		<!-- camera/controls -->
 		<SC.PerspectiveCamera
@@ -108,10 +130,22 @@
 		/>
 		<SC.SpotLight
 			color={$opts.lights.spot.color}
-			intensity={$opts.lights.spot.intensity}
 			angle={$opts.lights.spot.angle}
 			penumbra={$opts.lights.spot.penumbra}
-			position={spot}
+			position={[8, 0, 2]}
+			intensity={0.5}
+			shadow={{
+				radius: 20,
+				bias: -0.001,
+				mapSize: [2048, 2048]
+			}}
+		/>
+		<SC.SpotLight
+			color={$opts.lights.spot.color}
+			angle={$opts.lights.spot.angle}
+			penumbra={$opts.lights.spot.penumbra}
+			position={[2, 0, 10]}
+			intensity={0.5}
 			shadow={{
 				radius: 20,
 				bias: -0.001,
