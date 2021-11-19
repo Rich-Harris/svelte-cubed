@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as path from 'path';
 import { make_session_slug_processor } from '@sveltejs/site-kit/utils/slug.js';
 
 const dir = 'src/routes/docs/_content';

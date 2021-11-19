@@ -5,7 +5,7 @@
 	import * as defaults from '../../utils/defaults.js';
 
 	/** @type {THREE.BufferGeometry} */
-	export let geometry;
+	export let geometry = defaults.geometry;
 
 	export let material = defaults.material;
 	export let position = defaults.position;

@@ -17,6 +17,7 @@
 <Nav {segment} {page} logo="/images/svelte-kit-horizontal.svg">
 	<svelte:fragment slot="nav-center">
 		<NavItem segment="/docs/getting-started">Docs</NavItem>
+		<NavItem segment="/examples">Examples</NavItem>
 	</svelte:fragment>
 
 	<svelte:fragment slot="nav-right">
@@ -44,5 +45,6 @@
 		margin: 0 auto;
 		padding: var(--nav-h) 0 0 0;
 		overflow-x: hidden;
+		min-height: 100vh;
 	}
 </style>

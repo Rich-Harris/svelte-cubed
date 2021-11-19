@@ -15,6 +15,7 @@ specifiers:
   eslint-plugin-svelte3: ^3.2.0
   hast-util-heading-rank: ^2.1.0
   mdsvex: ^0.9.8
+  port-authority: ^1.1.2
   prettier: ~2.3.2
   prettier-plugin-svelte: ^2.3.1
   svelte: ^3.38.3
@@ -22,6 +23,7 @@ specifiers:
   svelte2dts: ^0.2.12
   svelte2tsx: ^0.4.1
   three: ^0.131.0
+  tiny-glob: ^0.2.9
   typescript: ^4.3.5
   unist-util-visit: ^4.1.0
 
@@ -39,6 +41,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@7.32.0
   eslint-plugin-svelte3: 3.2.0_eslint@7.32.0+svelte@3.44.1
   mdsvex: 0.9.8_svelte@3.44.1
+  port-authority: 1.1.2
   prettier: 2.3.2
   prettier-plugin-svelte: 2.5.0_prettier@2.3.2+svelte@3.44.1
   svelte: 3.44.1
@@ -46,6 +49,7 @@ devDependencies:
   svelte2dts: 0.2.12_b1ccd281d34b6c86691d80fac1d891de
   svelte2tsx: 0.4.10_svelte@3.44.1+typescript@4.5.2
   three: 0.131.3
+  tiny-glob: 0.2.9
   typescript: 4.5.2
 
 packages:
@@ -672,6 +676,10 @@ packages:
       type-fest: 0.20.2
     dev: true
 
+  /globalyzer/0.1.0:
+    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
+    dev: true
+
   /globby/11.0.4:
     resolution: {integrity: sha512-9O4MVG9ioZJ08ffbcyVYyLOJLk5JQ688pJ4eMGLpdWLHq/Wr1D9BlriLQyL0E+jbkuePVZXYFj47QM/v093wHg==}
     engines: {node: '>=10'}
@@ -682,6 +690,10 @@ packages:
       ignore: 5.1.9
       merge2: 1.4.1
       slash: 3.0.0
+    dev: true
+
+  /globrex/0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /graceful-fs/4.2.8:
@@ -952,6 +964,10 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /port-authority/1.1.2:
+    resolution: {integrity: sha512-me2dL+chJVb88zpE228MvA6wIRy1CuXxGTwI5hYe4DnSnXRbtJT+9ggRj+49kgHgs/AKMTKOt/EkTHSvQJmRXA==}
+    dev: true
+
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -1190,6 +1206,13 @@ packages:
 
   /three/0.131.3:
     resolution: {integrity: sha512-VkZAv8ZTJqiE/fyEmoWLxcNHImpVcjqW7RO0GzMu3tRpwO0KUvK9pjTmJzJcAbc51BOeB2G38zh80yjHTbP8gQ==}
+    dev: true
+
+  /tiny-glob/0.2.9:
+    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
+    dependencies:
+      globalyzer: 0.1.0
+      globrex: 0.1.2
     dev: true
 
   /to-regex-range/5.0.1:

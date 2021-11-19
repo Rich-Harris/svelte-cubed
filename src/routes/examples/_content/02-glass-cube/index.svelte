@@ -15,10 +15,10 @@
 	<GL.Mesh
 		geometry={new THREE.BoxGeometry()}
 		material={new THREE.MeshPhysicalMaterial({
-			thickness: 5,
+			thickness: 3,
 			roughness: 1,
 			transmission: 1,
-			ior: 1.25,
+			ior: 1.05,
 			attenuationTine: '#ffe79e',
 			attenuationDistance: 0
 		})}
