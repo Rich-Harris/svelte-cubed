@@ -21,7 +21,7 @@
 		{#each examples as example}
 			<a
 				href="/examples/{example.slug}"
-				style="background-image: url(/example-thumbnails/{example.slug}.jpeg)"
+				style="background-image: url(/example-thumbnails/{example.slug}.jpg)"
 			>
 				<span>{example.title}</span>
 			</a>

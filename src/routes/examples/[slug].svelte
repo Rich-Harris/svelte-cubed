@@ -5,8 +5,6 @@
 	const examples = import.meta.glob('./_content/**/index.svelte');
 	const meta = import.meta.glob('./_content/**/meta.json');
 
-	console.log({ examples, meta });
-
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ page }) {
 		for (const key in examples) {
