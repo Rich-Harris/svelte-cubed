@@ -16,10 +16,7 @@
 		<Blurb>
 			<div slot="one">
 				<h2>The power of Three.js</h2>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
-					eligendi sed amet laborum vel natus quae sint.
-				</p>
+				<p>Create beautiful, high-performance 3D apps with the most widely used WebGL framework</p>
 
 				<a href="https://threejs.org">learn Three.js</a>
 			</div>
@@ -27,18 +24,17 @@
 			<div slot="two">
 				<h2>The zen of Svelte</h2>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
-					eligendi sed amet laborum vel natus quae sint.
+					Wrangle complexity with a declarative component framework that lets you write less code
 				</p>
 
 				<a href="https://svelte.dev">learn Svelte</a>
 			</div>
 
 			<div slot="three">
-				<h2>TODO</h2>
+				<h2>Small is beautiful</h2>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
-					eligendi sed amet laborum vel natus quae sint.
+					Ship only the parts of Three.js you actually need — Svelte Cubed keeps things
+					treeshakeable
 				</p>
 
 				<a sveltekit:prefetch href="/docs">read the docs</a>
