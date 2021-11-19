@@ -14,7 +14,7 @@
 				return {
 					props: {
 						file,
-						meta: await meta[`./_content/${file}/meta.json`](),
+						metadata: await meta[`./_content/${file}/meta.json`](),
 						module: await examples[key]()
 					}
 				};
@@ -28,14 +28,14 @@
 	export let file;
 
 	/** @type {Record<string, string>} */
-	export let meta;
+	export let metadata;
 
 	/** @type {any} */
 	export let module;
 </script>
 
 <svelte:head>
-	<title>{meta.title} • Svelte Cubed examples</title>
+	<title>{metadata.title} • Svelte Cubed examples</title>
 </svelte:head>
 
 <svelte:component this={module && module.default} />
