@@ -14,7 +14,7 @@
 	<PreloadingIndicator />
 {/if}
 
-<Nav {segment} {page} logo="/images/svelte-cubed-horizontal.svg">
+<Nav {segment} {page} logo="/svelte-cubed-horizontal.svg">
 	<svelte:fragment slot="nav-center">
 		<NavItem segment="/docs/introduction">Docs</NavItem>
 		<NavItem segment="/examples">Examples</NavItem>

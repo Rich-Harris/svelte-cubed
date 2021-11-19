@@ -83,7 +83,7 @@
 				})
 			})}
 			position={[0, 0, -15]}
-			scale={35}
+			scale={25 * Math.max(w / h, 1)}
 			receiveShadow
 		/>
 
