@@ -7,7 +7,7 @@ overrides:
 specifiers:
   '@sveltejs/adapter-static': ^1.0.0-next.21
   '@sveltejs/kit': link:../../KIT/kit/packages/kit
-  '@sveltejs/site-kit': ^2.0.0-next.6
+  '@sveltejs/site-kit': link:../../sites/packages/site-kit
   '@types/node': ^16.11.7
   '@types/three': ^0.134.0
   eslint: ^7.30.0
@@ -36,7 +36,7 @@ dependencies:
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.21
   '@sveltejs/kit': link:../../KIT/kit/packages/kit
-  '@sveltejs/site-kit': 2.0.0-next.6
+  '@sveltejs/site-kit': link:../../sites/packages/site-kit
   '@types/node': 16.11.7
   '@types/three': 0.134.0
   eslint: 7.32.0
@@ -200,12 +200,6 @@ packages:
 
   /@sveltejs/adapter-static/1.0.0-next.21:
     resolution: {integrity: sha512-B4+QoUVAaANKx+mHntG8SqF45zbj3Ct4Akg/cGauo6COyfKZRhO5OsMa+wPuT2TKJBZC4eEDK0p+p9nyQBkxKQ==}
-    dev: true
-
-  /@sveltejs/site-kit/2.0.0-next.6:
-    resolution: {integrity: sha512-hZ/uQmAT9R6cge/Wux+pMdKHKj5ICeBd6NNS2dUx5bugpQI8wocLnvEKKH+Z7f0o6Nmvn8D/BExTrLCBDGRySw==}
-    dependencies:
-      golden-fleece: 1.0.9
     dev: true
 
   /@types/hast/2.3.4:
@@ -702,10 +696,6 @@ packages:
 
   /globrex/0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
-    dev: true
-
-  /golden-fleece/1.0.9:
-    resolution: {integrity: sha512-YSwLaGMOgSBx9roJlNLL12c+FRiw7VECphinc6mGucphc/ZxTHgdEz6gmJqH6NOzYEd/yr64hwjom5pZ+tJVpg==}
     dev: true
 
   /graceful-fs/4.2.8:

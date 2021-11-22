@@ -44,7 +44,5 @@
 		position: relative;
 		margin: 0 auto;
 		padding: var(--nav-h) 0 0 0;
-		overflow-x: hidden;
-		min-height: 100vh;
 	}
 </style>
