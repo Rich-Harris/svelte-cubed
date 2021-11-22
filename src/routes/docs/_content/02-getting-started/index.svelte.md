@@ -50,7 +50,7 @@ Now you're ready to start building 3D graphics (in your project's `src/routes/in
 </SC.Canvas>
 ```
 
-> If you like, you can [open this demo in the REPL](https://svelte.dev/repl/4c4ee3f70ae84969acf58b0a6f3137a5) and follow along.
+> If you like, you can [open this demo in StackBlitz](https://stackblitz.com/edit/sveltekit-ve6xp3?file=src/routes/index.svelte) and follow along.
 
 <div class="demo">
 	<CanvasWithBox1/>
@@ -325,4 +325,4 @@ Finally, add a `fog` property to the canvas:
 	<CanvasWithBox8/>
 </div>
 
-> Play with the [finished version in the REPL](https://svelte.dev/repl/fb41dd0a4f81437393dc48b6f3e547f2).
+> Play with the [finished version on StackBlitz](https://stackblitz.com/edit/sveltekit-vqtrge?file=src/routes/index.svelte).
