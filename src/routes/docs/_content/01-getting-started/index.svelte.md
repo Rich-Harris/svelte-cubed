@@ -219,6 +219,12 @@ Svelte Cubed components are just like any other component, which means we can up
 +	<label><input type="range" bind:value={height} min={0.1} max={3} step={0.1} /> height</label>
 +	<label><input type="range" bind:value={depth} min={0.1} max={3} step={0.1} /> depth</label>
 +</div>
++
++<style>
++	.controls {
++		position: absolute;
++	}
++</style>
 ```
 
 <div class="demo">
