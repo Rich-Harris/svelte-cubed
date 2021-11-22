@@ -16,7 +16,7 @@
 
 <Nav {segment} {page} logo="/svelte-cubed-horizontal.svg">
 	<svelte:fragment slot="nav-center">
-		<NavItem segment="/docs/introduction">Docs</NavItem>
+		<NavItem segment="/docs/getting-started">Docs</NavItem>
 		<NavItem segment="/examples">Examples</NavItem>
 	</svelte:fragment>
 

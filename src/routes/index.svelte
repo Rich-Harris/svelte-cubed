@@ -54,7 +54,7 @@
 				</p>
 
 				<p>
-					Read the <a href="/docs/introduction">documentation</a> and check out the
+					Read the <a href="/docs/getting-started">documentation</a> and check out the
 					<a href="/examples">examples</a> to learn more.
 				</p>
 			</div>

@@ -1,14 +1,8 @@
 ---
-title: Introduction
+title: FAQs
 ---
 
-## What is Svelte Cubed?
-
-Svelte Cubed is a component library for building [Three.js](https://threejs.org) scene graphs in [Svelte](https://svelte.dev) apps. In the same way that Svelte **declaratively** abstracts over all the messiness of **imperatively** building and updating the DOM, Svelte Cubed makes it easy to build state-driven 3D graphics.
-
-**It is not yet done**. You can use it, but you should expect missing features and APIs that aren't yet set in stone.
-
-## Comparisons
+## How is it different from X?
 
 ### Svelte GL
 
