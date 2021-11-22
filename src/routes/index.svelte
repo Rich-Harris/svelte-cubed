@@ -31,10 +31,10 @@
 			</div>
 
 			<div slot="three">
-				<h2>Small is beautiful</h2>
+				<h2>Familiar design</h2>
 				<p>
-					Ship only the parts of Three.js you actually need — Svelte Cubed keeps things
-					treeshakeable
+					Use the same tools and techniques you use with your existing Svelte apps — no special
+					equipment needed
 				</p>
 
 				<a sveltekit:prefetch href="/docs">read the docs</a>
@@ -42,19 +42,20 @@
 
 			<div class="description" slot="what">
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsum, necessitatibus
-					eligendi sed amet laborum vel natus quae sint.
+					Creating 3D graphics on the web has never been easier or more accessible. Svelte Cubed
+					lets you build state-driven Three.js scenes with minimal code.
 				</p>
 
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ad eligendi veritatis
-					perspiciatis iure ducimus quia omnis temporibus veniam ut, fugiat at tempore incidunt
-					minus vero molestiae quae odio maxime?
+					When used with a framework like <a href="https://kit.svelte.dev">SvelteKit</a>, Svelte
+					Cubed supercharges your Three.js development with features like hot module reloading,
+					giving you the best possible development experience — while also optimising for user
+					experience with techniques like treeshaking.
 				</p>
 
 				<p>
-					Read the <a href="https://svelte.dev/blog/introducing-svelte-cubed">introductory blog</a>
-					post to learn more.
+					Read the <a href="/docs/introduction">documentation</a> and check out the
+					<a href="/examples">examples</a> to learn more.
 				</p>
 			</div>
 
