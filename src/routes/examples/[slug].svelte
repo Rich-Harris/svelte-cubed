@@ -38,7 +38,9 @@
 	<title>{metadata.title} • Svelte Cubed examples</title>
 </svelte:head>
 
-<svelte:component this={module && module.default} />
+<main>
+	<svelte:component this={module && module.default} />
+</main>
 
 <a
 	target="_blank"
@@ -48,6 +50,10 @@
 </a>
 
 <style>
+	main {
+		min-height: 100vh;
+	}
+
 	a {
 		position: fixed;
 		right: 1rem;
