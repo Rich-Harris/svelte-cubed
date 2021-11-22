@@ -36,4 +36,6 @@ Svelte Cubed is inspired by R3F in many ways. There are however some key differe
 
   As of version 8, you can enable treeshaking by explicitly 'extending' the R3F element catalogue.
 
+Paul was kind enough to [respond to these points on Twitter](https://twitter.com/0xca0a/status/1462192957994512400).
+
 Overall, R3F is more battle-tested and feature-rich. Svelte Cubed doesn't yet have physics integrations and turnkey interactivity, for example. These things are planned for the future, but in the meantime if you need to build a WebGL app quickly and you already know React, R3F is the way to go.
