@@ -1,5 +1,9 @@
 # svelte-cubed changelog
 
+## 0.2.1
+
+- Correctly diff OrbitControls target ([#12](https://github.com/Rich-Harris/svelte-cubed/issues/12))
+
 ## 0.2.0
 
 - Rename from `svelte-three` to `svelte-cubed`
