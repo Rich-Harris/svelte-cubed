@@ -60,8 +60,8 @@
 			if (
 				!target ||
 				controls.target.x !== target[0] ||
-				controls.target.x !== target[1] ||
-				controls.target.x !== target[2]
+				controls.target.y !== target[1] ||
+				controls.target.z !== target[2]
 			) {
 				target = [controls.target.x, controls.target.y, controls.target.z];
 			}
@@ -83,8 +83,8 @@
 	$: if (
 		target &&
 		(controls.target.x !== target[0] ||
-			controls.target.x !== target[1] ||
-			controls.target.x !== target[2])
+			controls.target.y !== target[1] ||
+			controls.target.z !== target[2])
 	) {
 		controls.target.set(target[0], target[1], target[2]);
 
