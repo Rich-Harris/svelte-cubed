@@ -37,18 +37,3 @@
 	<SC.AmbientLight intensity={0.6} />
 	<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
 </SC.Canvas>
-
-<style>
-
-	label {
-		display: flex;
-		width: 60px;
-		gap: 0.5em;
-		align-items: center;
-	}
-
-	input {
-		width: 80px;
-		margin: 0;
-	}
-</style>
