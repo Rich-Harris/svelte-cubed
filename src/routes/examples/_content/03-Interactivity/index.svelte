@@ -2,43 +2,40 @@
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
-	import * as knobby from 'svelte-knobby';
+
+	let root
 
 	const rayCaster = new THREE.Raycaster();
 	const point = new THREE.Vector2();
+	// TODO-DefinitelyMaybe: export from mesh or object
+	// https://threejs.org/docs/index.html?q=mesh#api/en/core/Object3D.visible
+	let visible = false;
+	const white = new THREE.MeshStandardMaterial({color:"white"})
+	const black = new THREE.MeshStandardMaterial({color:"black"})
+	let color = white
+	let x = 0;
+	let y = 0;
+	let z = 0;
 
 	/** @type {THREE.Font} */
 	let font;
 
-	let camera;
-	let cube;
-
 	/** @type {THREE.Texture} */
 	let background;
 
-	const options = knobby.panel({
-		line1: 'hello',
-		line2: 'world',
-		material: {
-			color: '#ff3e00',
-			metalness: { value: 0.3, min: 0, max: 1, step: 0.01 },
-			roughness: { value: 0.4, min: 0, max: 1, step: 0.01 },
-			opacity: { value: 0.5, min: 0, max: 1, step: 0.01 },
-			transparent: false
-		},
-		light: {
-			x: { value: 2, min: -20, max: 20, step: 0.1 },
-			y: { value: 1, min: -20, max: 20, step: 0.1 },
-			z: { value: 5, min: -20, max: 20, step: 0.1 },
-			intensity: { value: 1, min: 0, max: 1, step: 0.1 },
-			color: '#ffffff'
-		}
-	});
-
 	function castRay(event) {
-		point.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-		point.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-		rayCaster.setFromCamera( point, camera );
+		point.x = ( event.clientX / root.renderer.domElement.clientWidth ) * 2 - 1;
+		point.y = - ( event.clientY / root.renderer.domElement.clientHeight ) * 2 + 1;
+		rayCaster.setFromCamera( point, root.camera.object );
+		const intersects = rayCaster.intersectObject( root.scene.children[0] );
+		if ( intersects.length > 0 ) {
+			visible = true
+			x = intersects[0].point.x
+			y = intersects[0].point.y
+			z = intersects[0].point.z
+		} else {
+			visible = false
+		}
 	}
 
 	onMount(() => {
@@ -55,16 +52,20 @@
 </script>
 
 <div class="container" class:visible={font && background}>
-	<SC.Canvas {background} antialias on:click={() => {console.log("HEllo world");}}
+	<SC.Canvas bind:root={root} {background} antialias
+		on:mousedown={() => {color = black}}
+		on:mouseup={() => {color = white}}
 		on:mousemove={castRay}>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry(1,1,1)}
-			material={new THREE.MeshStandardMaterial($options.material)}
-			position={[0, 0, 0]}
-			bind:this={cube}
-		/>
+			material={new THREE.MeshStandardMaterial({color:0xff3e00})}
+			position={[0, 0, 0]}/>
+		<SC.Mesh
+			geometry={new THREE.BoxGeometry(0.1,0.1,0.1)}
+			material={color}
+			position={[x, y, z]}/>
 
-		<SC.PerspectiveCamera position={[0, 0, 10]} bind:this={camera} />
+		<SC.PerspectiveCamera position={[0, 0, 10]} />
 		<SC.OrbitControls
 			target={[0, 0, 0]}
 			enableZoom={false}
@@ -75,9 +76,9 @@
 
 		<SC.AmbientLight intensity={0.4} />
 		<SC.DirectionalLight
-			position={[$options.light.x, $options.light.y, $options.light.z]}
-			intensity={$options.light.intensity}
-			color={$options.light.color}
+			position={[2, 1, 5]}
+			intensity={1}
+			color={0xffffff}
 		/>
 	</SC.Canvas>
 </div>
