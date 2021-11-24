@@ -227,7 +227,9 @@
 <svelte:window on:resize={resize} />
 
 <div class="container" bind:this={container}>
-	<canvas bind:this={root.canvas} />
+	<canvas
+		on:click on:mousemove
+		bind:this={root.canvas} />
 
 	{#if root.scene}
 		<slot />
