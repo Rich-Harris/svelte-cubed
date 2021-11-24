@@ -35,7 +35,7 @@ export function setup(self) {
 }
 
 /** @returns {import('../types/context').RootContext} */
-function get_root() {
+export function get_root() {
 	return getContext(ROOT);
 }
 
