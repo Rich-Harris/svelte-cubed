@@ -98,7 +98,7 @@
 	/** @type {Array<() => void>}*/
 	const before_render = [];
 
-	const root = set_root({
+	export const root = set_root({
 		canvas: null,
 		scene: null,
 		renderer: null,
@@ -227,7 +227,9 @@
 <svelte:window on:resize={resize} />
 
 <div class="container" bind:this={container}>
-	<canvas bind:this={root.canvas} />
+	<canvas
+		on:mousedown on:mouseup on:mousemove
+		bind:this={root.canvas} />
 
 	{#if root.scene}
 		<slot />
