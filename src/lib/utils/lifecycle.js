@@ -1,14 +1,16 @@
 import { onMount } from 'svelte';
 
-/** @param {() => void} callback */
+/** @param {(elapsedTime: number, deltaTime: number) => void} callback */
 export function onFrame(callback) {
 	onMount(() => {
 		/** @type {number} */
 		let frame;
+		let lastTime = 0.0;
 
-		requestAnimationFrame(function loop() {
+		requestAnimationFrame(function loop(frameTime) {
 			frame = requestAnimationFrame(loop);
-			callback(); // TODO are there useful args we can pass here?
+			callback(frameTime, frameTime - lastTime);
+			lastTime = frameTime;
 		});
 
 		return () => {
