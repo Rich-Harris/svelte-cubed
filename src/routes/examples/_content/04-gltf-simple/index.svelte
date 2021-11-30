@@ -41,7 +41,12 @@
 	    position={[0, 0, 0]}
 		castShadow
 		receiveShadow />
-	<SC.GLTF path="/gltf/waterbottle/" filename="WaterBottle.gltf"
+	<SC.GLTF filename="/gltf/CesiumMan.glb"
+		position={[-6, 0, 0]}
+		castShadow
+		receiveShadow />
+		
+	<SC.GLTF filename="/gltf/waterbottle/WaterBottle.gltf"
 		position={[3, 0, 0]}
 		useDraco
 		castShadow
@@ -51,6 +56,7 @@
 		useKTX2
 		castShadow
 		receiveShadow />
+	
 
 	<SC.PerspectiveCamera position={[1, 2, 6]} target={[0, 1, 0]} />
 	<SC.OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.51} />
