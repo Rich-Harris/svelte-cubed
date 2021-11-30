@@ -11,20 +11,20 @@ export function get() {
 				const filename = `${dir}/${key}/index.svelte.md`;
 				if (!fs.existsSync(filename)) return null;
 
-				let match = /---\n([\s\S]+?)\n---\n([\s\S]+)/.exec(fs.readFileSync(filename, 'utf-8'));
-
-				if (!match) {
+				let match_list = fs.readFileSync(filename, 'utf-8').split("---")
+				// first is before first --- line, which is blank
+				if (match_list.length != 3) {
 					throw new Error(`${key} missing frontmatter`);
 				}
-
-				const [, frontmatter, content] = match;
+				const [, frontmatter, content] = match_list;
 
 				/** @type {Record<string, string>} */
 				const metadata = {};
-
 				frontmatter.split('\n').forEach((line) => {
-					const [key, value] = line.split(':');
-					metadata[key.trim()] = value.trim();
+					if (line.includes(":")) {
+						const [key, value] = line.split(':');
+						metadata[key.trim()] = value.trim();
+					}
 				});
 
 				const path = `/docs/${key.slice(3)}`;
@@ -35,10 +35,10 @@ export function get() {
 				const slugify = make_session_slug_processor();
 
 				const pattern = /^##(#)? *(.+)/gm;
-				while ((match = pattern.exec(content))) {
-					const title = match[2].trim();
+				while ((match_list = pattern.exec(content))) {
+					const title = match_list[2].trim();
 
-					if (match[1]) {
+					if (match_list[1]) {
 						// subsection
 						if (!current) throw new Error(`encountered h3 before h2`);
 						current.sections.push({
