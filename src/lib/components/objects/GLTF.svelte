@@ -34,7 +34,7 @@
 	export let frustumCulled = true;
 	export let renderOrder = 0;
 
-	/** @type {Object} */
+	/** @type {THREE.Group} */
 	let gltfScene = null;
 
 	const { root, parent, self } = setup(new THREE.Object3D());

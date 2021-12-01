@@ -1,12 +1,6 @@
 <script>
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
-
-	let cameraX = 0.0;
-
-	SC.onFrame((elapsedTime, deltaTime) => {
-		cameraX = Math.pow(Math.sin(elapsedTime/1000),3)*3;
-	});
 </script>
 
 <SC.Canvas
@@ -45,7 +39,7 @@
 		position={[-6, 0, 0]}
 		castShadow
 		receiveShadow />
-		
+
 	<SC.GLTF filename="/gltf/waterbottle/WaterBottle.gltf"
 		position={[3, 0, 0]}
 		useDraco
