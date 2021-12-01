@@ -42,6 +42,21 @@ If you're using TypeScript:
 npm install -D @types/three
 ```
 
+To make the `three` library work with svelte-cubed, you might need to add the following to your `svelte.config.js`:
+
+```js
+const config = {
+	kit: {
+		vite: {
+			ssr: {
+				noExternal: ["three"]
+			}
+		}
+	}
+};
+```
+(Only add the part that is missing from your `svelte.config.js`. Do not overwrite the whole contents.)
+
 Now you're ready to start building 3D graphics (in your project's `src/routes/index.svelte`, for example).
 
 ## Your first scene
