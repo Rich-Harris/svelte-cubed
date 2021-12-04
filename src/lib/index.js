@@ -14,6 +14,7 @@ export { default as OrthographicCamera } from './components/cameras/Orthographic
 
 // controls
 export { default as OrbitControls } from './components/controls/OrbitControls.svelte';
+export { default as PointerLockControls } from './components/controls/PointerLockControls.svelte';
 
 // lights
 export { default as AmbientLight } from './components/lights/AmbientLight.svelte';
