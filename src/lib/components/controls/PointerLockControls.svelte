@@ -4,6 +4,7 @@
 	import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 	import { createEventDispatcher } from 'svelte';
 	import { onFrame } from '../../utils/lifecycle.js';
+	import * as SC from 'svelte-cubed';
 
 	export let maxPolarAngle = Math.PI;
 	export let minPolarAngle = 0;
@@ -14,10 +15,14 @@
 	export let moveLeft = false;
 	export let moveRight = false;
 	export let canJump = false;
+	/** @type {SC.Mesh[]} */
+	export let objects = [];
 
 	let isLocked = false;
 	let prevTime = performance.now();
 	const direction = new THREE.Vector3();
+	/** @type {THREE.Raycaster} */
+	let raycaster
 
 	const { root } = setup();
 	const dispatch = createEventDispatcher();
@@ -26,6 +31,8 @@
 	let controls;
 
 	root.controls.set((camera, canvas) => {
+		raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+
 		controls = new PointerLockControls(camera, canvas);
 
 		controls.addEventListener('start', (e) => {
@@ -124,6 +131,14 @@
 
 			if (moveForward || moveBackward) velocity.z -= direction.z * 400.0 * delta;
 			if (moveLeft || moveRight) velocity.x -= direction.x * 400.0 * delta;
+
+			raycaster.ray.origin.copy( camera.position );
+			raycaster.ray.origin.y -= 10;
+
+			console.log(objects);
+			// const intersections = raycaster.intersectObjects( objects.map(object => object.mesh), false );
+
+			// const onObject = intersections.length > 0;
 
 			// if (onObject === true) {
 			// 	velocity.y = Math.max(0, velocity.y);
