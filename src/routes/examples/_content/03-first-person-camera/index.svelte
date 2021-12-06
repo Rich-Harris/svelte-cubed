@@ -14,7 +14,7 @@
 >
 	<SC.Group position={[0, -1 / 2, 0]}>
 		<SC.Mesh
-		bind:this={floor}
+			bind:this={floor}
 			geometry={new THREE.PlaneGeometry(50, 50)}
 			material={new THREE.MeshStandardMaterial({ color: 'burlywood' })}
 			rotation={[-Math.PI / 2, 0, 0]}
@@ -35,7 +35,7 @@
 	/>
 
 	<SC.PerspectiveCamera position={[1, 1, 3]} />
-	<SC.PointerLockControls maxPolarAngle={Math.PI * 0.51} objects={[floor, cube]} />
+	<SC.PointerLockControls />
 	<SC.AmbientLight intensity={0.6} />
 	<SC.DirectionalLight intensity={0.6} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
 </SC.Canvas>
