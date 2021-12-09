@@ -10,6 +10,7 @@
 	export let position = defaults.position;
 	export let rotation = defaults.rotation;
 	export let scale = defaults.scale;
+	export let castShadow = false;
 
 	const { root, self } = setup(new THREE.Object3D());
 
@@ -31,6 +32,8 @@
 
 	$: {
 		transform(self, position, rotation, scale);
+		self.castShadow = castShadow;
+
 		root.invalidate();
 	}
 </script>
