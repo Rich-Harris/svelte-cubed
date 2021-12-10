@@ -15,6 +15,16 @@
 	const { root, self } = setup(new THREE.Group());
 
 	$: {
+		self.traverse(node => {
+			if (node instanceof THREE.Mesh) {
+				node.castShadow = castShadow;
+				node.receiveShadow = receiveShadow;
+				node.frustumCulled = frustumCulled;
+			}
+		})
+	}
+
+	$: {
 		self.castShadow = castShadow;
 		self.receiveShadow = receiveShadow;
 		self.frustumCulled = frustumCulled;

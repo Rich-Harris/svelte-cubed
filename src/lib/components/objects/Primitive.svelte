@@ -21,6 +21,16 @@
 	let previous;
 
 	$: {
+		object.traverse(node => {
+			if (node instanceof THREE.Mesh) {
+				node.castShadow = castShadow;
+				node.receiveShadow = receiveShadow;
+				node.frustumCulled = frustumCulled;
+			}
+		})
+	}
+
+	$: {
 		if (previous) {
 			self.remove(previous);
 		}
