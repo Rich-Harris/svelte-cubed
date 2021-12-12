@@ -161,6 +161,10 @@ TODO
 
 TODO
 
+### <PointerLockControls>
+
+TODO
+
 ## Helpers
 
 ### <SkeletonHelper>

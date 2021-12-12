@@ -85,6 +85,9 @@
 	/** @param {Function} fn */
 	const run = (fn) => fn();
 
+	/**
+	 * @description is required to rerender the scene if something has changed
+	 */
 	const invalidate = () => {
 		if (frame) return;
 
