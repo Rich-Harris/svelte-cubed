@@ -89,7 +89,7 @@ function render(element) {
 	);
 
 	const renderer = new THREE.WebGLRenderer();
-	renderer.setSize(element.clientWidth / element.clientHeight);
+	renderer.setSize(element.clientWidth, element.clientHeight);
 	element.appendChild(renderer.domElement);
 
 	const geometry = new THREE.BoxGeometry();
