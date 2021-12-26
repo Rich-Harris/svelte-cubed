@@ -111,6 +111,27 @@ geometry: THREE.BufferGeometry;
 material: THREE.Material = new THREE.MeshNormalMaterial();
 ```
 
+### <Points>
+
+[Object3D](https://threejs.org/docs/#api/en/core/Object3D) properties:
+
+```ts
+position: Position = [0, 0, 0];
+rotation: Rotation = [0, 0, 0];
+scale: Scale = 1;
+castShadow: boolean = false;
+receiveShadow: boolean = false;
+frustumCulled: boolean = true;
+renderOrder: number = 0;
+```
+
+[Points](https://threejs.org/docs/#api/en/objects/Points) properties:
+
+```ts
+geometry: THREE.BufferGeometry;
+material: THREE.Material = new THREE.PointsMaterial();
+```
+
 ### <Primitive>
 
 TODO
