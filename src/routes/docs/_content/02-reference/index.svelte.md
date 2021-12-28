@@ -56,7 +56,6 @@ autoClearColor: boolean = true
 autoClearDepth: boolean = true
 autoClearStencil: boolean = true
 checkShaderErrors: boolean = true
-gammaFactor: number = 2
 localClippingEnabled: boolean = false
 physicallyCorrectLights: boolean = false
 outputEncoding: number = undefined

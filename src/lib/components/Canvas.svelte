@@ -39,7 +39,6 @@
 	export let autoClearDepth = true;
 	export let autoClearStencil = true;
 	export let checkShaderErrors = true;
-	export let gammaFactor = 2;
 	export let localClippingEnabled = false;
 	export let physicallyCorrectLights = false;
 
@@ -193,7 +192,6 @@
 		root.renderer.autoClearDepth = autoClearDepth;
 		root.renderer.autoClearStencil = autoClearStencil;
 		root.renderer.debug.checkShaderErrors = checkShaderErrors;
-		root.renderer.gammaFactor = gammaFactor;
 		root.renderer.localClippingEnabled = localClippingEnabled;
 		root.renderer.physicallyCorrectLights = physicallyCorrectLights;
 		if (outputEncoding != null) root.renderer.outputEncoding = outputEncoding;
