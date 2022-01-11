@@ -226,7 +226,7 @@
 
 <svelte:window on:resize={resize} />
 
-<div class="container" bind:this={container}>
+<div class="svelte-cubed-container" bind:this={container}>
 	<canvas bind:this={root.canvas} />
 
 	{#if root.scene}
@@ -235,7 +235,7 @@
 </div>
 
 <style>
-	.container,
+	.svelte-cubed-container,
 	canvas {
 		position: absolute;
 		width: 100%;
