@@ -172,11 +172,11 @@
 
 	const resize = () => {
 		if (width === undefined) {
-			_width = container.clientWidth / pixelRatio;
+			_width = container.clientWidth;
 		}
 
 		if (height === undefined) {
-			_height = container.clientHeight / pixelRatio;
+			_height = container.clientHeight;
 		}
 	};
 
