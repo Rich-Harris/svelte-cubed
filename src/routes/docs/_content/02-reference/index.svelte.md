@@ -108,7 +108,7 @@ renderOrder: number = 0;
 
 ```ts
 geometry: THREE.BufferGeometry;
-material: THREE.Material = new THREE.MeshNormalMaterial();
+material: THREE.Material | THREE.Material[] = new THREE.MeshNormalMaterial();
 ```
 
 ### <Primitive>
