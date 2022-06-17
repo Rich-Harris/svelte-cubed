@@ -15,7 +15,7 @@ npm install -g pnpm
 ...then install dependencies:
 
 ```
-pnpm install
+pnpm add svelte-cubed
 ```
 
 Run `pnpm dev -- --open` to launch the demo site.
