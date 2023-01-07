@@ -1,3 +1,8 @@
+# Warning: this project as been deprecated
+
+Consider using one of the several three.js component libraries available for Svelte
+(e.g. [Threlte](https://threlte.xyz/)).
+
 # svelte-cubed
 
 A Three.js component library for Svelte.
